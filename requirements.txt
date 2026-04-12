@@ -1,0 +1,42 @@
+# Local LLM & Free APIs
+ollama
+langchain-ollama
+google-generativeai
+langchain-google-genai
+langchain-groq
+
+# Local GPU Acceleration (CUDA 13.2 Environment)
+# Note: Use the appropriate CUDA 13 index if installing from scratch
+torch --index-url https://download.pytorch.org/whl/cu130
+
+# Orchestration & Frameworks
+langchain
+langchain-community
+langgraph
+
+# Tokenization & Data Handling
+tiktoken
+pandas
+numpy
+python-dotenv
+pydantic
+instructor
+
+# Vector Databases & Search (Local-Friendly)
+chromadb
+qdrant-client
+sentence-transformers
+cohere
+
+# Evaluation & Observability
+ragas
+langsmith
+
+# Frontend & Demos
+streamlit
+gradio
+
+# Tools & Utilities
+tqdm
+ipykernel
+rich
