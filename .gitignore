@@ -180,4 +180,7 @@ cython_debug/
 .cursorignore
 .cursorindexingignore
 /_linkedin_hub
-GEMINI.MD
+#GEMINI.MD
+Module-01-Retrieval-Foundation/02-Atomic-Chunking-Strategies/Project/processed_chunks.json
+Module-01-Retrieval-Foundation/02-Atomic-Chunking-Strategies/Project/Data/test_data.docx
+Module-01-Retrieval-Foundation/02-Atomic-Chunking-Strategies/Project/Data/VLSI_MOD3.pdf
