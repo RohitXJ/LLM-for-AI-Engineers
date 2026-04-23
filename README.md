@@ -9,16 +9,30 @@ This repository is designed to prove **Accuracy, Logic, and Reliability**. Every
 
 ### 🗺️ The Atomic Roadmap
 
-- **[Module 01: The Retrieval Foundation](./Module-01-Retrieval-Foundation/)**
-  - Tokenization, Chunking, Vector Embeddings, and Naive RAG.
-- **[Module 02: Advanced Retrieval](./Module-02-Advanced-Retrieval/)**
-  - Metadata Filtering, Hybrid Search, Re-ranking, and Query Transformation.
-- **[Module-03: Structured Logic & Extraction](./Module-03-Structured-Logic-Extraction/)**
-  - JSON Mode, Pydantic/Instructor, Function Calling, and Guardrails.
-- **[Module-04: Agentic Workflows](./Module-04-Agentic-Workflows/)**
-  - LangGraph, Memory/State Management, and Multi-Agent Orchestration.
-- **[Module-05: Evaluation & LLMOps](./Module-05-Evaluation-LLMOps/)**
-  - RAGAS, LLM-as-a-Judge, and Observability (LangSmith).
+#### 📂 [Module 01: The Retrieval Foundation](./Module-01-Retrieval-Foundation/)
+*Mastering how text becomes searchable "knowledge".*
+- **[💸 The LLM Budgeting Tool](./Module-01-Retrieval-Foundation/01-Tokenization-Context-Windows/Project/)**
+  - *Focus:* Token auditing, cost projection, and context window visualization across GPT-4o, Llama 3, and DeepSeek.
+- **[🏗️ CHUNKER-PRO CLI](./Module-01-Retrieval-Foundation/02-Atomic-Chunking-Strategies/Project/)**
+  - *Focus:* Multi-strategy text splitting (Recursive, Token, Semantic) with adaptive semantic thresholding and metadata injection.
+- **[Vector Embeddings & Databases](./Module-01-Retrieval-Foundation/03-Vector-Embeddings/)** (Upcoming)
+- **[Naive RAG Loop Implementation](./Module-01-Retrieval-Foundation/05-Naive-RAG-Loop/)** (Upcoming)
+
+#### 📂 [Module 02: Advanced Retrieval](./Module-02-Advanced-Retrieval/)
+*Fixing accuracy issues and optimizing search relevance.*
+- **Metadata Filtering**, **Hybrid Search**, **Re-ranking**, and **Query Transformation**.
+
+#### 📂 [Module 03: Structured Logic & Extraction](./Module-03-Structured-Logic-Extraction/)
+*Guaranteeing valid outputs and tool integration.*
+- **JSON Mode**, **Pydantic/Instructor**, **Function Calling**, and **Guardrails**.
+
+#### 📂 [Module 04: Agentic Workflows](./Module-04-Agentic-Workflows/)
+*Autonomous systems that iterate and solve problems.*
+- **LangGraph**, **Memory/State Management**, and **Multi-Agent Orchestration**.
+
+#### 📂 [Module 05: Evaluation & LLMOps](./Module-05-Evaluation-LLMOps/)
+*Proving reliability with metrics and observability.*
+- **RAGAS**, **LLM-as-a-Judge**, and **Observability (LangSmith/Arize)**.
 
 ---
 
@@ -49,14 +63,6 @@ Each module follows a strict folder structure:
    ```
 4. **Setup Environment Variables:**
    - Create a `.env` file with your API keys (OpenAI, Gemini, Anthropic, LangSmith, etc.)
-
----
-*Created for a future Senior AI Engineer. Let's build.*
-Create a `.env` file with your API keys (Gemini, Groq, LangSmith, etc.)
-
----
-*Created for a future Senior AI Engineer. Let's build.*
-e a `.env` file with your API keys (OpenAI, Gemini, Anthropic, LangSmith, etc.)
 
 ---
 *Created for a future Senior AI Engineer. Let's build.*
