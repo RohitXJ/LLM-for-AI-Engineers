@@ -35,6 +35,8 @@ Generates a `processed_chunks.json` containing structured objects with:
 *   `content`: The actual text chunk.
 *   `metadata`: Complete lineage information for advanced RAG filtering.
 
+![JSON Output Structure](imgs/3.png)
+
 ---
 
 ## 🛠️ Technical Stack
@@ -49,14 +51,18 @@ Generates a `processed_chunks.json` containing structured objects with:
 ## 📦 Usage
 
 ### 1. Basic Processing (Single File)
+Process a single file using the recursive character strategy.
 ```bash
 python main.py -f Data/test_data.txt --strategy recur --chunk_size 500 --chunk_overlap 50
 ```
+![Single File Processing](imgs/1.png)
 
 ### 2. Batch Processing (Directory)
+Process an entire directory of mixed files using the token-based strategy.
 ```bash
 python main.py -d ./input_folder --strategy token --chunk_size 256
 ```
+![Batch Processing](imgs/2.png)
 
 ### 3. Semantic Splitting
 ```bash
