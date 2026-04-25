@@ -1,0 +1,662 @@
+[
+    {
+        "chunk_id": "test_data.docx_p1_c1",
+        "content": "AAAAA",
+        "metadata": {
+            "source": "test_data.docx",
+            "extension": ".docx",
+            "last_modified": "2026-04-20 14:30:55",
+            "page": 1,
+            "chunk_index": 1
+        }
+    },
+    {
+        "chunk_id": "test_data.docx_p3_c1",
+        "content": "BBBBB",
+        "metadata": {
+            "source": "test_data.docx",
+            "extension": ".docx",
+            "last_modified": "2026-04-20 14:30:55",
+            "page": 3,
+            "chunk_index": 1
+        }
+    },
+    {
+        "chunk_id": "test_data.docx_p5_c1",
+        "content": "CCCCC",
+        "metadata": {
+            "source": "test_data.docx",
+            "extension": ".docx",
+            "last_modified": "2026-04-20 14:30:55",
+            "page": 5,
+            "chunk_index": 1
+        }
+    },
+    {
+        "chunk_id": "test_data.txt_p1_c1",
+        "content": "LOG_START | USER: Admin_99 | TIMESTAMP: 2026-04-20\nMorning Standup: \"Okay team, we\u2019re seeing some weirdness in the production environment \ud83d\uded1. The auth-service is throwing 500 errors every time someone from the EMEA region tries to log in. I suspect it\u2019s a database deadlock issue. @Sarah, can you check the indexing on the user_sessions table? We need this fixed by EOD because the VP is breathing down our necks. \ud83d\ude24\"\n--- RANDOM NOTE ---\nI read this cool thing about the Schr\u00f6dinger's Cat paradox last night. It basically says that if you put a cat in a box with a radioactive source, the cat is both alive and dead until you open the box \ud83d\udc31\ud83d\udce6. It\u2019s called 'superposition.' This has nothing to do with the EMEA login bug, but it\u2019s more interesting than SQL.",
+        "metadata": {
+            "source": "test_data.txt",
+            "extension": ".txt",
+            "last_modified": "2026-04-20 14:22:07",
+            "page": 1,
+            "chunk_index": 1
+        }
+    },
+    {
+        "chunk_id": "test_data.txt_p1_c2",
+        "content": "SYSTEM_ALERT: CRITICAL_ERROR: CloudWatch alarm 'HighCPU-Usage' triggered for 'instance-id: i-0abc12345'. \ud83d\udea8 Action: Initiating auto-scaling... wait, the auto-scaling failed because we hit our budget cap! \ud83d\udcb8 Total monthly spend: $42,500. We need to talk to Finance about the 'Alpha Project' costs.\nHR INTERNAL: \"Reminder: The 'Healthy Office' initiative starts Monday. Please stop leaving half-eaten pizzas in the breakroom fridge \ud83c\udf55\ud83d\udeab. It\u2019s attracting ants, and the cleaning crew is complaining. Also, we are out of dark roast coffee pods. Please use the light roast until the shipment arrives on Wednesday. \u2615\ufe0f\"\n--- TECH SPECS ---",
+        "metadata": {
+            "source": "test_data.txt",
+            "extension": ".txt",
+            "last_modified": "2026-04-20 14:22:07",
+            "page": 1,
+            "chunk_index": 2
+        }
+    },
+    {
+        "chunk_id": "test_data.txt_p1_c3",
+        "content": "--- TECH SPECS ---\nThe James Webb Space Telescope uses a 6.5-meter primary mirror coated in a thin layer of gold to reflect infrared light \ud83d\udd2d\u2728. It sits at the L2 Lagrange point, roughly 1.5 million kilometers from Earth. If the login bug persists, maybe we can just blame it on solar flares? Just kidding. @DevOps, please check the Docker logs: tail -f /var/log/containers/auth-service-xyz.log.\nGossip: Did you hear that Mark from Marketing bought a CyberTruck? \ud83d\ude99 It looks like a low-poly video game character. Anyway, back to work. LOG_END\nLOG_START | USER: Admin_99 | TIMESTAMP: 2026-04-20",
+        "metadata": {
+            "source": "test_data.txt",
+            "extension": ".txt",
+            "last_modified": "2026-04-20 14:22:07",
+            "page": 1,
+            "chunk_index": 3
+        }
+    },
+    {
+        "chunk_id": "test_data.txt_p1_c4",
+        "content": "LOG_START | USER: Admin_99 | TIMESTAMP: 2026-04-20\nMorning Standup: \"Okay team, we\u2019re seeing some weirdness in the production environment \ud83d\uded1. The auth-service is throwing 500 errors every time someone from the EMEA region tries to log in. I suspect it\u2019s a database deadlock issue. @Sarah, can you check the indexing on the user_sessions table? We need this fixed by EOD because the VP is breathing down our necks. \ud83d\ude24\"\n--- RANDOM NOTE ---\nI read this cool thing about the Schr\u00f6dinger's Cat paradox last night. It basically says that if you put a cat in a box with a radioactive source, the cat is both alive and dead until you open the box \ud83d\udc31\ud83d\udce6. It\u2019s called 'superposition.' This has nothing to do with the EMEA login bug, but it\u2019s more interesting than SQL.",
+        "metadata": {
+            "source": "test_data.txt",
+            "extension": ".txt",
+            "last_modified": "2026-04-20 14:22:07",
+            "page": 1,
+            "chunk_index": 4
+        }
+    },
+    {
+        "chunk_id": "test_data.txt_p1_c5",
+        "content": "SYSTEM_ALERT: CRITICAL_ERROR: CloudWatch alarm 'HighCPU-Usage' triggered for 'instance-id: i-0abc12345'. \ud83d\udea8 Action: Initiating auto-scaling... wait, the auto-scaling failed because we hit our budget cap! \ud83d\udcb8 Total monthly spend: $42,500. We need to talk to Finance about the 'Alpha Project' costs.\nHR INTERNAL: \"Reminder: The 'Healthy Office' initiative starts Monday. Please stop leaving half-eaten pizzas in the breakroom fridge \ud83c\udf55\ud83d\udeab. It\u2019s attracting ants, and the cleaning crew is complaining. Also, we are out of dark roast coffee pods. Please use the light roast until the shipment arrives on Wednesday. \u2615\ufe0f\"\n--- TECH SPECS ---",
+        "metadata": {
+            "source": "test_data.txt",
+            "extension": ".txt",
+            "last_modified": "2026-04-20 14:22:07",
+            "page": 1,
+            "chunk_index": 5
+        }
+    },
+    {
+        "chunk_id": "test_data.txt_p1_c6",
+        "content": "--- TECH SPECS ---\nThe James Webb Space Telescope uses a 6.5-meter primary mirror coated in a thin layer of gold to reflect infrared light \ud83d\udd2d\u2728. It sits at the L2 Lagrange point, roughly 1.5 million kilometers from Earth. If the login bug persists, maybe we can just blame it on solar flares? Just kidding. @DevOps, please check the Docker logs: tail -f /var/log/containers/auth-service-xyz.log.\nGossip: Did you hear that Mark from Marketing bought a CyberTruck? \ud83d\ude99 It looks like a low-poly video game character. Anyway, back to work. LOG_END",
+        "metadata": {
+            "source": "test_data.txt",
+            "extension": ".txt",
+            "last_modified": "2026-04-20 14:22:07",
+            "page": 1,
+            "chunk_index": 6
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p1_c1",
+        "content": "VLSI Design                                    Module 3 Class Notes                                  OEC -CSM801B  \n \n \nMOS stands for  Metal Oxide Semiconductor . Metal Oxide Semiconductor is used \nfor constructing transistors which are called MOSFET (Metal Oxide \nSemiconductor Field Effect Transistors). MOS transistors are being extensively \nused in a variety of modern electronic and power electronic devices like \ninverters, microprocessors, memory ICs, digital logic circuits, and more.  \nWhat is a MOS Transistor?  \nA MOS (Metal Oxide Semiconductor) transistor  is a type of field effect transistor \n(FET) that can operate in both depletion mode and enhancement mode. A MOS \ntransistor typically consists of three -terminals namely, Gate (G), Source (S), \nand Drain (D). The major parts of a MOS transistor are: a semiconductor",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 1,
+            "chunk_index": 1
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p1_c2",
+        "content": "transistor typically consists of three -terminals namely, Gate (G), Source (S), \nand Drain (D). The major parts of a MOS transistor are: a semiconductor \nchannel, an oxide insulating layer, a metal gate, and terminals.  \nThe most important point to know about MOS  transistor is that it is a voltage -\ncontrolled device which means the operation or current flow through the \nsemiconductor channel is controlled by varying the voltage applied to the gate \nterminal.  \nIn the MOS transistor, the gate terminal is made up of meta l and is separated \nfrom the semiconductor channel by an insulating layer made up of silicon \ndioxide. This arrangement allows the gate voltage to establish an electric field \nin the semiconductor channel and control its electrical conductivity.  Module 3  Recapitulation of MOS; CMOS,  \nCMOS inverter characteristics  \nCMOS logic circuits,  \nNAND & NOR Gates",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 1,
+            "chunk_index": 2
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p1_c3",
+        "content": "in the semiconductor channel and control its electrical conductivity.  Module 3  Recapitulation of MOS; CMOS,  \nCMOS inverter characteristics  \nCMOS logic circuits,  \nNAND & NOR Gates  \nComplex logic circuits,  \nCMOS Full Adder,  \nCMOS Transmission GATE,  \nAdvanced CMOS Logic circuits;  \nSequential CMOS logic circuits,  \nSR Latch circuit,  \nclocked JK Latch/ Master -Slave JK,  \nCMOS D -latch & Edge triggered flip -flop.  \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \nRecapitulation of MOS; CMOS",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 1,
+            "chunk_index": 3
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p2_c1",
+        "content": "Construction  of MOS Transistor  \nA MOS transistor consists of a lightly dopped semiconductor substrate, two \nheavily dopped regions, oxide layer, and metallic gate terminal.  \nThe basic construction of a MOS transistor is depicted in the following figure.  \n \nTo construct a MOS transistor , a lightly dopped semiconductor substrate is taken \ninto which two heavily doped semiconductor regions are diffused, which act as \nsource and drain of the MOS transistor. An oxide layer made of silicon dioxide \nis deposited on the lightly doped semiconductor  substrate to which the metallic \ngate terminal is attached. This oxide layer acts as an insulating layer between \nthe metallic gate terminal and the lightly doped semiconductor substrate.  \nDepending on the type of semiconductor substrate used, the MOS transi stors \nare called as PMOS and NMOS transistors.  \nTypes of MOS Transistors",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 2,
+            "chunk_index": 1
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p2_c2",
+        "content": "Depending on the type of semiconductor substrate used, the MOS transi stors \nare called as PMOS and NMOS transistors.  \nTypes of MOS Transistors  \nDepending on the type of semiconductor channel, there are two types of MOS \ntransistors namely,  \n\u2022 NMOS Transistor (N -Channel Metal Oxide Semiconductor Transistor)  \n\u2022 PMOS Transistor (P -Chann el Metal Oxide Semiconductor Transistor)  \nNMOS Transistor  \nIn the case of NMOS Transistor (N -Channel Metal Oxide Semiconductor \nTransistor), a lightly doped P -type semiconductor substrate is diffused with a \nheavily doped n -type region. An insulating oxide layer is deposited on the p -\ntype substrate to which the meta llic gate terminal is connected.  \nThe basic construction of an NMOS transistor is displayed in the following \nfigure.",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 2,
+            "chunk_index": 2
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p3_c1",
+        "content": "When a voltage is applied to the gate terminal, it creates an n -channel in \nbetween the source and drain. In the NMOS transistor, the heavily doped n -\ntype regions act as source and drain.  \nPMOS Transistor  \nIn the  PMOS trans istor, a lightly doped n -type semiconductor substrate is \ndiffused with two heavily dopped P -type substrates, which act as source and \ndrain. A thin layer of silicon dioxide is deposited on the surface of the n -type \nsubstrate. The basic construction of a PMO S transistor depicted in the figure \nbelow.  \n \nWhen a voltage is applied at the gate terminal, a p -type channel induced in \nthe n -type substrate between the source and drain through which current \nflows. The current flowing through the p -channel is connected by varying  the \ngate voltage.",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 3,
+            "chunk_index": 1
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p3_c2",
+        "content": "the n -type substrate between the source and drain through which current \nflows. The current flowing through the p -channel is connected by varying  the \ngate voltage.  \nRegions of Operation of MOS Transistors  \nMOS transistors operate in the following three regions ?",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 3,
+            "chunk_index": 2
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p4_c1",
+        "content": "\u2022 Cutoff Region  ? In the cutoff region of operation, the MOS transistor remains in off \nstate and hence, there is no current flow from source t o drain. In the cutoff region, the \nMOS transistor acts as an open switch.  \n\u2022 Saturation Region  ? In the saturation region, the MOS transistor allows the flow of \nelectric current between source and drain. Consequently, MOS transistor in \nsaturation region of op eration acts as a closed switch.  \n\u2022 Linear/Ohmic Region  ? In the linear region, the MOS transistor offers a constant \nresistance in the flow of current between source and drain. This resistance is \ncontrolled by the gate voltage. MOS transistor operating in lin ear region is used in \namplification applications.  \nWorking of MOS Transistors  \nA MOS transistor can operate as a solid -state switch or an amplifier. The",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 4,
+            "chunk_index": 1
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p4_c2",
+        "content": "controlled by the gate voltage. MOS transistor operating in lin ear region is used in \namplification applications.  \nWorking of MOS Transistors  \nA MOS transistor can operate as a solid -state switch or an amplifier. The \noperation of a MOS transistor is completely dependent on its type and biasing, \ni.e. a MOS transistor can operate in two modes, namely  depletion \nmode and enhancement mode.  \nAs mentioned above, a MOS transistor has an insulating oxide layer between \nthe channel and the gate terminal. This oxide insulating layer increases the \ninput impedance of the MOS transistor.  Hence, it restricts the flow of gate \ncurrent.  \nDepletion Mode Operation of MOS Transistor  \nWhen the MOS transistor operates in depletion mode, a channel is formed \nbetween the source and drain. The voltage applied between the source and \ndrain causes a drain current to flow through the channel between source and",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 4,
+            "chunk_index": 2
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p4_c3",
+        "content": "When the MOS transistor operates in depletion mode, a channel is formed \nbetween the source and drain. The voltage applied between the source and \ndrain causes a drain current to flow through the channel between source and \ndrain. In order to decrease or stop  the drain current flow, a reverse bias \nvoltage is applied to the gate terminal which depletes the channel between the \nsource and drain.  \nEnhancement Mode Operation of MOS Transistor  \nWhen the MOS transistor operates in the enhancement mode, a forward \nvoltag e is applied to the gate terminal that attracts the minority charge carriers \nfrom the semiconductor substrate and accumulates these minority charge \ncarriers just below the gate terminal. This increases or enhances the width of \nthe channel. The width of the  channel depends upon the amount of voltage",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 4,
+            "chunk_index": 3
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p5_c1",
+        "content": "applied to the gate terminal. The application of voltage between the source \nand drain results in the flow of drain current.  \nAdvantages of MOS Transistors  \nThe main advantages of MOS (Metal Oxide Semiconductor) tra nsistors are \nlisted below ?  \n\u2022 Due to presence of insulating oxide layer, the MOS transistors have a very high input \nimpedance. Therefore, a very small current is required to control the operation of the \ntransistor. The high input impedance makes the MOS tran sistors better suited for \nlower power applications like digital logic circuits.  \n\u2022 MOS transistors provide very high switching, i.e. they can turn ON and OFF at a faster \nspeed. Therefore, they are suitable to used in digital electronic circuits, where high \nswitching speed is critical.  \n\u2022 MOS transistors consume negligible energy while operating. This is because it has",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 5,
+            "chunk_index": 1
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p5_c2",
+        "content": "speed. Therefore, they are suitable to used in digital electronic circuits, where high \nswitching speed is critical.  \n\u2022 MOS transistors consume negligible energy while operating. This is because it has \nvery low leakage current and high input impedance. Therefore, MOS transistors are \nalso suitable to used in battery powered devices.  \n\u2022 MOS transistors  can be fabricated in compact sizes. Therefore, they are suitable to \nused in integrated circuits where size is a concern.  \n\u2022 MOS transistors have a noise -free operation due to unipolar nature.  \n\u2022 MOS transistors have very low power losses due to voltage -controll ed operation.  \n\u2022 At low operating voltages, MOS transistors provide high efficiencies.  \n\u2022 MOS transistors can also be used at high frequencies.  \n\u2022 MOS transistors can operate in a wider range of voltages.  \nDisadvantages of MOS Transistors",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 5,
+            "chunk_index": 2
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p5_c3",
+        "content": "\u2022 MOS transistors can also be used at high frequencies.  \n\u2022 MOS transistors can operate in a wider range of voltages.  \nDisadvantages of MOS Transistors  \nThe major down sides of MOS  (Metal Oxide Semiconductor) transistors are \nlisted below ?  \n\u2022 MOS transistors are comparatively more expensive than bipolar junction transistors \n(BJTs).  \n\u2022 MOS transistors have a limited operating voltage capability, beyond a certain voltage \nlimit they may breakdown.  \n\u2022 The presence of insulating oxide layer between the gate terminal and the channel can \ncause damage to the MOS transistor due to high electrostati c charge buildup by the \ncapacitor action.",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 5,
+            "chunk_index": 3
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p6_c1",
+        "content": "\u2022 MOS transistors are sensitive to temperature variations which can affect their \nperformance.  \nApplications of MOS Transistors  \nMOS transistors are widely used in a number of applications. Some common \napplications of M OS (Metal Oxide Semiconductor) transistors are as follows ?  \n\u2022 MOS transistors are widely used in electronic circuits and devices like \nmicroprocessors, microcontrollers, etc. for switching purposes.  \n\u2022 MOS transistors are also for electronic signal amplification  in electronic systems like \nin data transmission and communication.  \n\u2022 MOS transistors are widely used in power electronic applications like in inverters.  \n\u2022 MOS transistors are also used in digital circuit and systems due to their high -speed \noperation.  \n\u2022 MOS tran sistors are also used to implement high frequency amplifier circuits.  \n\u2022 MOS transistors are used in motor drives.",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 6,
+            "chunk_index": 1
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p6_c2",
+        "content": "operation.  \n\u2022 MOS tran sistors are also used to implement high frequency amplifier circuits.  \n\u2022 MOS transistors are used in motor drives.  \n\u2022 MOS transistors are also used in SMPS (Switch Mode Power Supply) unit.  \n \n \nCMOS Inverter  \nLast Updated  : 23 Jul, 2025 \n\u2022  \u2022  \nThe CMOS  inverter  is crucial  in electronics,  employed  in memory  chips  and \nmicroprocessors  among  others.  It generates  complementary  outputs  \nwhenever  there  are input  signals  through  it. These  inverters  allow  flexibility  \namong  circuit  designers  because  they  can be classified  into many  categories  \ndepending  on their  abilities  and arrangements . \nFor their  functionality,  NMOS  and PMOS  transistors  should  counteract  each",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 6,
+            "chunk_index": 2
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p6_c3",
+        "content": "depending  on their  abilities  and arrangements . \nFor their  functionality,  NMOS  and PMOS  transistors  should  counteract  each  \nother  whereby  they  may react  to input  voltages  by oscillating  between  \nconductive  and non-conducti ve modes.  Silicon  substrates  are host  to \nconnecting  metal  layers,  transistors,  and resistors  in CMOS  inverter  \ncomponents . \nWhat  is CMOS  Inverter ?",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 6,
+            "chunk_index": 3
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p7_c1",
+        "content": "CMO S, short  for Complementary  Metal -Oxide -Semiconductor,  is the type  \nof silicon  chip electronics  technology  that has been  used  in many  devices,  \nwhich  handle  signal  passing  in their  circuits . \nFor many  electronic  devices,  a CMOS  serves  as the brain.  It is a small  but \nvery  significant  part that regulates  the flow  of signals  through  circuits.  \nCMOS  helps  in controlling  the actions  of electronic  devices  based  on the \nsignals  they  receive,  much  as our brain  instructs  our bodies  on what  to do. \nTypes  of CMOS  Inverte r \n\u2022 Conventional  CMOS  Inverte r: A single  series -connected  NMOS",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 7,
+            "chunk_index": 1
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p7_c2",
+        "content": "Types  of CMOS  Inverte r \n\u2022 Conventional  CMOS  Inverte r: A single  series -connected  NMOS  \nand PMOS  transistor  forms  up a conventional  CMOS  inverte r. \n\u2022 Static  CMOS  Inverte r: In this kind of inverter,  the circuit  always  \ncontains  both  PMOS  and NMOS  transistor s. Its low power  usage \nand high  noise  immunity  are a result  of this condition . \n\u2022 Dynamic  CMOS  Inverte r: These  inverters  allow  higher  speeds  \nbut may use more  power  than  static  CMOS  inverters  since  they  \nuse a clock  signal  to control  the behavior  of the transistors . \n\u2022 Pseudo -NMOS  Inverte r: This configuration  is simpler,  but it",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 7,
+            "chunk_index": 2
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p7_c3",
+        "content": "use a clock  signal  to control  the behavior  of the transistors . \n\u2022 Pseudo -NMOS  Inverte r: This configuration  is simpler,  but it \nrequires  more  power  due to employing  only  an NMOS  transistor  \nfor pull-down  and a resistor  for pull-up. \nSchematic  Diagram  of CMOS  Inverte r \nGiven  Below  is the Schematic  Diagram  of CMOS  Inverte r",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 7,
+            "chunk_index": 3
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p8_c1",
+        "content": "CMOS Inverter schematic diagr am \n\u2022 The diagram  is shown  with  two transistors  tied up in series  \nbetween  the ground  and the power  source  in it. \n\u2022 Unlike  PMOS  transistors  where  the source  is linked  to power  \nsupply  and the drain  is tied to the output  , an NMOS  transistor\u2019s  \nsource  is directly  linked  with  earth  while  its drain  is linked  with  \noutput  . \n\u2022 The input  to the inverter  is actually  a mutual  connec tion \nbetween  the gates  of the two transistors . \n\u2022 When  the input  level  reaches  logic  level  0, the NMOS  transistor  \nis on which  causes  PMOS  transistor  to be cut-off therefore",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 8,
+            "chunk_index": 1
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p8_c2",
+        "content": "\u2022 When  the input  level  reaches  logic  level  0, the NMOS  transistor  \nis on which  causes  PMOS  transistor  to be cut-off therefore  \ncausing  high  output.  On the contrary,  in a scenario  where  NMOS  \ntransistor  goes  off, inverter\u2019s  output  is low due to high  \ninput  voltag e. \nOperations  of CMOS  Inverte r \n\u2022 In order  to create  a CMOS  inverter,  one has to merge  two types  \nof transistors  : PMOS  and NMOS  respectively .",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 8,
+            "chunk_index": 2
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p9_c1",
+        "content": "\u2022 The process  requires  that you connect  them  in this way,  thus,  \nthere  must  be one NMOS  and one PMOS  transistor  consisting  a \nCMOS  inverter  made  on the same  silicon  chip. \n\u2022 The input  terminal  is made  up of NMOS  and PMOS  transistors  \nthat have  an input  voltage  applied  to their  gates  together  with  \nan output  terminal  which  is connected  to drains  of the two \ntransistors . \n\u2022 The sources  of PMOS  and NMOS  transistors  are attached  to \ndistinct power  supply  voltages  unlike  in the case  of the other  \nterminals.  Specifically  speaking,  the NMOS  transistor  is",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 9,
+            "chunk_index": 1
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p9_c2",
+        "content": "distinct power  supply  voltages  unlike  in the case  of the other  \nterminals.  Specifically  speaking,  the NMOS  transistor  is \nconnected  to ground  (0 V) while  its counterpart,  PMOS  \ntransistor  is connected  to a positive  power  supply  voltage  (Vdd) . \nConstructio n \nWorking  of CMOS  Inverte r \n\u2022 Input  High  (Logic  1): An NMOS  transistor  is turned  on by input  \nof high  voltage  (logic  1) while  a PMOS  transistor  is turned  off \nthere.  When  these  two things  happen,  the output  voltage  (logic  \n0) is lowered  through  reduced  resistance  path  between  an \noutput  terminal  and ground .",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 9,
+            "chunk_index": 2
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p9_c3",
+        "content": "there.  When  these  two things  happen,  the output  voltage  (logic  \n0) is lowered  through  reduced  resistance  path  between  an \noutput  terminal  and ground . \n\u2022 Input  Low (Logic  0): In contrast,  when  a low voltage  (logic  0) is \nprovided  to the input  terminal,  the NMOS  transistor  switches  off \nand the PMOS  transistor  conducts.  The output  voltage  (logic  1) \nrises  as a result  of the low resistance  path  that exists  between",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 9,
+            "chunk_index": 3
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p10_c1",
+        "content": "the output  terminal  and the positiv e power  supply  voltage  \n(VDD) . \n\u2022 The CMOS  inverter  operates  more  easily  because  of the \ncomplimentary  characteristics  of the NMOS  and PMOS  \ntransistors.  Because  one of the transistors  conducts  while  the \nother  is off depending  on the input  voltage,  the output  of the \ntransistors  is inverted  with  respect  to the input  signal . \n\u2022 CMOS  inverters  offer  very  low static  power  dissipation  (no DC \ncurrent  flows  between  VDD  and ground  while  the input  is at a \nconstant  logic  level)  as a result  of this complimentary  pairing . \n \nCharacteristics  of CMOS  Inverte r",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 10,
+            "chunk_index": 1
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p10_c2",
+        "content": "constant  logic  level)  as a result  of this complimentary  pairing . \n \nCharacteristics  of CMOS  Inverte r \nGiven  Below  are the Characteristics  of CMOS  Inverter  : \nInverter  Static  Characteristics  (VTC)  \n\u2022 When  the circuit  is static,  VTC  shows  how  the output  voltage  \nchanges  with  the input  voltage.  The threshold  voltage  is the \npoint  at which  the output  states  abruptly  change  from  high  to \nlow.  The production  decreases  below  this level  and stays  high  \nabove  it. To ensure  balanced  functioning,  CMOS  inverters  \nshould  ideally  provide  a symmetric  VTC  around  the midpoint  \nvoltage .",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 10,
+            "chunk_index": 2
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p10_c3",
+        "content": "above  it. To ensure  balanced  functioning,  CMOS  inverters  \nshould  ideally  provide  a symmetric  VTC  around  the midpoint  \nvoltage . \n\u2022 The VTC  is like an upside  down  step  function  because  of the \nincreased  accuracy  in turning  ON/OFF  transitions.  Quality  in the \ntransition  regio n is suggested  by the existence  of well -defined  \nslopes  that enable  precise  switching.  By comparing  the lowest  \ninput  value  within  each  ON or OFF operation  region  with  the \nhighest  output  value,  one could  calculate  the tolerance  for noise . \n \n \nFor different value of input voltages, the operating regions are listed below for both transistors.  \nRegion  Vin  Vout  nMOS  pMOS",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 10,
+            "chunk_index": 3
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p10_c4",
+        "content": "For different value of input voltages, the operating regions are listed below for both transistors.  \nRegion  Vin  Vout  nMOS  pMOS  \nA  < V TO, n  VOH  Cut \u2013 off  Linear  \nB  VIL  High \u2248 VOH  Saturation  Linear  \nC  Vth  Vth  Saturation  Saturation  \nD  VIH  Low \u2248 VOL  Linear  Saturation",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 10,
+            "chunk_index": 4
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p11_c1",
+        "content": "The VTC of CMOS is shown in the figure below \u2013  \n \n \n \nCritical Voltages  \nWe have seen that in an ideal inverter circuit, the input voltage for logic \u20180\u2019 ranges  \nfrom 0 to VDD/2; and the input voltage for logic \u20181\u2019 ranges from VDD/2 to VDD. The  \nsame is true for the output voltage as well. However, in practical inverter circuits  \nthe input voltage for logic \u20180\u2019 ranges from 0 to VIL, and the input voltage for logic  \n\u20181\u2019 ranges from VIH to VDD. Similarly, the output voltage for logic \u20180\u2019 ranges from  \n0 to VOL, and that for logic \u20181\u2019 ranges from VOH to VDD; where the variables are  \ndefined as follows:  \nVIL = maximum input voltage that can be treated as logic \u20180\u2019",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 11,
+            "chunk_index": 1
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p11_c2",
+        "content": "0 to VOL, and that for logic \u20181\u2019 ranges from VOH to VDD; where the variables are  \ndefined as follows:  \nVIL = maximum input voltage that can be treated as logic \u20180\u2019 \nVIH = minimum input voltage that can be treated as logic \u20181\u2019 \nVOL = maximum output voltage that can be treated as logic \u20180\u2019 \nVOH = minimum output voltage that can be treated as logic \u20181\u2019 \nNote: The first letter in the suffix above indicates input ( I) or output ( O) voltage  \nand the second letter indicates logic low ( L) or high ( H). For example, the suffix  \nOL indicates output voltage corresponding to logic low.  \nThe four critical voltage points are illustrated in Fig. 3.3.  \nFig.  Typical voltage transfer characteristics of a practical inverter",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 11,
+            "chunk_index": 2
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p12_c1",
+        "content": "The threshold voltage of the inverter is represented by Vth and is determined by  \nthe input voltage for which Vin = Vout. \n3.2.2 Noise Margins  \nPractical inverter circuits experience external disturbances leading to extra voltage  \non the signal lines. Such unwanted additional voltage is termed as noise. If the noise in a \ndigital circuit exceeds certain margins, known as noise margi ns, the \ndesired logic levels are changed.  \nWe derive expressions to define noise margins for logic \u20180\u2019 and logic \u20181\u2019 as \nfollows:  \nIn practical inverter circuits, the maximum input low level is VIL and the maximum  \noutput low level is VOL. Therefore, if VIL > VOL, then there is a margin in  \nthe input voltage for logic \u20180\u2019, which can be allowed without causing any change",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 12,
+            "chunk_index": 1
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p12_c2",
+        "content": "output low level is VOL. Therefore, if VIL > VOL, then there is a margin in  \nthe input voltage for logic \u20180\u2019, which can be allowed without causing any change  \nin the output voltage. Hence, the noise margin for logic \u20180\u2019 (NM L) is defined as  \nfollows:  \n \nSimilarly, t he noise margin for logic \u20181\u2019 (NM H) is defined as follows:",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 12,
+            "chunk_index": 2
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p13_c1",
+        "content": "Inverter  Dynamic  Characteristics  \n\u2022 These  show  how  the inverter  responds  to changes  in input  \nsignal  over  time,  which  is crucial  for circuit  speed  and efficiency.  \nEffective  charging  and discharging  of the output  node  is \npossible  in CMOS  inverters  due to the quick  switching  speeds  \noffered  by complementary  NMOS  and PMOS  transistors . \n\u2022 Rise Time  or tR: the time  for a signal  to go from  10%  to 90%  of \nits final  value . \n\u2022 Peak  Time  or tP: Time  taken  for a response  to reach  maximum  \nvalue . \n\u2022 Fall Time  or tF: the time  taken  for 90% -10%  drop  in the signal",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 13,
+            "chunk_index": 1
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p13_c2",
+        "content": "value . \n\u2022 Fall Time  or tF: the time  taken  for 90% -10%  drop  in the signal  \ndepending  on its value . \nInverter Dynamic Characteristi c \nComponents  of CMOS  Inverte r \n1. NMOS  Transistor : An NMOS  transistor  consists  of a gate,  \nsource,  and drain  terminals  that make  it an N-channel  metal -\noxide -semiconductor  transistor.  When  the gate  terminal  is \nconnected  positively  to the source  terminal,  an NMOS  transistor  \nconducts . \n2. PMOS  Transistor : A P-channel  metal -oxide -semiconductor  \ntransistor  which  has (the)  gate,  source  and drain  terminals",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 13,
+            "chunk_index": 2
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p13_c3",
+        "content": "conducts . \n2. PMOS  Transistor : A P-channel  metal -oxide -semiconductor  \ntransistor  which  has (the)  gate,  source  and drain  terminals  \nsimilar  to those  of (its) counterpart  (an) NMOS  transistor.",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 13,
+            "chunk_index": 3
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p14_c1",
+        "content": "Commonly  referred  to, (some)  PMOS  transistor  conducts  when  a \nnegative  voltage . \n3. Substrate : Silicon  is used  in building  the PMOS  as well  as \nNMOS  transistors.  It ensures  that they  are both  mechanically  \nstable  and electrically  isolated . \n4. Interconnects : To create  the required  circuit  configuration,  the \nvarious  transistor  terminals  are connected  via interconnecting  \nmetal  layers.  Within  the CMOS  inverter,  these  metal  layers  \nguarantee  appropriate  signal  routing  and electrical  connectivity . \n5. Gate  Connection : The gate  of the PMOS  and NMOS  transistors  \nis connected  to the input  terminal  of the CMOS  inverter .",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 14,
+            "chunk_index": 1
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p14_c2",
+        "content": "5. Gate  Connection : The gate  of the PMOS  and NMOS  transistors  \nis connected  to the input  terminal  of the CMOS  inverter . \n6. Power  Supply  Connections : PMOS  and NMOS  transistors  are \nusually  attached  to different  points  on the power  supply  \ndevices.  Whereas  PMOS  transistors  are normally  attached  to a \npositive  power  supply  voltage,  known  as VDD,  NMOS  \ntransistors  often  use ground  (0 volts) . \nImportant  Terminologie s \n1. Threshold  Voltage  (Vth):  The threshold  voltage,  Vth, is the \nvoltage  required  to switch  on a transistor  while  it is still the \nleast  compared  to the other  input  voltages .",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 14,
+            "chunk_index": 2
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p14_c3",
+        "content": "voltage  required  to switch  on a transistor  while  it is still the \nleast  compared  to the other  input  voltages . \n2. Propagation  delay:  It is the combination  of both  transistor  \nswitching  delay  and signal  propagation  time  before  an output  \nresponds  or changes  when  there  is a change  of input . \n3. Noise  Margin : Noise  Margin  is the difference  between  the \nmaximum  input  voltage  for a valid  HIGH  and the lowest  input  \nvoltage  for a valid  LOW  . It determines  the tolerance  of an IC to \nnoise . \n4. Power  Consumption:  Power  Consumption  rate is low in CMOS  \ninverters  because  their  design  characteristics  make  them",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 14,
+            "chunk_index": 3
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p14_c4",
+        "content": "noise . \n4. Power  Consumption:  Power  Consumption  rate is low in CMOS  \ninverters  because  their  design  characteristics  make  them  \nconsume  less of electrical  power  than  any other  type  of inverter . \n \nAdvantages  of CMOS  Inverte r \n\u2022 CMOS  inverters  have  extremely  low static  power  consumption . \n\u2022 Circuit s are less vulnerable  to outside  interference.  In noisy  \nenvironments,  this guarantees  dependable  performance .",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 14,
+            "chunk_index": 4
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p15_c1",
+        "content": "\u2022 As they  can function  across  a broad  range  of supply  voltages,  \nCMOS  inverters  are adaptable  to a variety  of applications . \n\u2022 CMOS  inverters  reduce  loadi ng effects  by drawing  very  little  \ncurrent  from  the driving  circuitry . \n\u2022 The symmetric  rise and fall times  that CMOS  inverters  usually  \ndisplay  result  in balanced  signal  propagation  characteristics  and \nenhanced  circuit  performance . \nDisadvantages  of CMOS  Invert er \n\u2022 CMOS  fabrication  can result  in higher  production  costs  due to its \nintricate  and multi -step  manufacturing  process . \n\u2022 CMOS  inverters  have  a finite  propagation  delay  because  of a \nnumber  of different  factors .",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 15,
+            "chunk_index": 1
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p15_c2",
+        "content": "intricate  and multi -step  manufacturing  process . \n\u2022 CMOS  inverters  have  a finite  propagation  delay  because  of a \nnumber  of different  factors . \n\u2022 Minor  differences  in the production  process  affect ing the \nperformance  of CMOS  are noticeable  leading  to a possible  \ndisparity  between  transistors  or their  behaviour  in different  \ncircuits . \n\u2022 Potential  users  may find that the inability  of CMOS  inverters  \nworking  at a high  current  is a limitation  compared  with  other  \ntechnology  types  like TTL beca use they  have  a smaller  power  \nhandling  capacity . \n\u2022 Even  with  their  low static  power  consumption,  CMOS  inverters  \nnevertheless  show  leakage  currents,  particularly  at smaller",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 15,
+            "chunk_index": 2
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p15_c3",
+        "content": "handling  capacity . \n\u2022 Even  with  their  low static  power  consumption,  CMOS  inverters  \nnevertheless  show  leakage  currents,  particularly  at smaller  \ntechnology  nodes,  which  eventually  contributes  to the \ndissipation  of static  power . \nApplications  of CMOS  Inverte r \n\u2022 The fundamental  components  of different  digital  logic  gates  \nused  in processors,  memory  circuits,  and other  digital  systems  \nare CMOS  inverters . \n\u2022 They  are used  to buffer  and distribute  clock  signals  among  \nintegrated  circuits  in clock distribution  networks . \n\u2022 In mixed -signal  circuits,  CMOS  inverters  can be utilized  for level  \nshifting,  which  involves  converting  between  various  voltage  \nlevels .",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 15,
+            "chunk_index": 3
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p15_c4",
+        "content": "\u2022 In mixed -signal  circuits,  CMOS  inverters  can be utilized  for level  \nshifting,  which  involves  converting  between  various  voltage  \nlevels . \n\u2022 They  are employed  in oscillator  circuits  in digital  systems  to \nproduce  timing  references  and clock signals .",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 15,
+            "chunk_index": 4
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p16_c1",
+        "content": "\u2022 Frequency  divider  circuits  use CMOS  inverters  to divide  the \nfrequency  of input  signals . \n\u2022 They  are used  in circuits  with  voltage  regulators  to regulate  \npower  supplies  steadily . \n\u2022 The CMOS  inverters  are used  to drive  the LEDs  (Light  Emitting  \nDiodes)  in display  panels,  and indicator  circuits  too. \n\u2022 LEDs  are integrated  in the key regions  of computer -memory  \nknown  as static -random -access  memory  (SRAM)  cells . \n\u2022 To condition  and process  signals  from  different  sensor s, sensor  \ninterface  circuits  use CMOS  inverters . \n\u2022 They  optimize  power  consumption  by controlling  and managing  \nthe distribution  of power  in electronic  devices .",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 16,
+            "chunk_index": 1
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p16_c2",
+        "content": "interface  circuits  use CMOS  inverters . \n\u2022 They  optimize  power  consumption  by controlling  and managing  \nthe distribution  of power  in electronic  devices . \n \nImplementation  of Logic  Gates  using  \nCMOS  Logic  \nIn general any CMOS based logic gate consist of Pull -up network and pull -\ndown network. The pull -up network consists of PMOS transistors while pull -\ndown network consist of NMOS transistor s. And inputs to both networks are \nsame.  \n \nSo, we have already discussed about the CMOS inverter. Similarly, let\u2019s see \nhow to design other logic gates using CMOS logic.",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 16,
+            "chunk_index": 2
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p17_c1",
+        "content": "Implementation  of NAND  and NOR  gate using  CMOS  Logic:  \nNAND  Gate:  \n \nFor two input NAND gate, if A and B are the inputs then its output Y = (A.B)\u2019.  \nIn NMOS network when we have AND operation between the two variables, \nthen two NMOS transistors will get connected in series. And the output will be \ncomplement of it.  The PMOS network is dual of the NMOS network. In the \nNMOS network, if  two transistors are connected in series then in the PMOS \nnetwork, the two PMOS transistors will get connected in parallel.  \nNOR  Gate:",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 17,
+            "chunk_index": 1
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p18_c1",
+        "content": "For two input NOR gate, if A and B are the inputs then its output Y = (A+B)\u2019.  \nIn the NMOS network, whenever there is an OR operation between the two \nvariables then two NMOS transistors will get connected in parallel. And the \noutput will be complement of it.  \nThe PMOS network will be the dual of the NMOS network. Therefore, in the \nPMO S network, the two PMOS transistors will get connected in series.  \nImplementation  of AND  and OR gate using  CMOS  Logic:  \nOR Gate:  \nTo implement the OR gate, just add the inverter at the output of the NOR \ngate. The CMOS OR gate is shown below.  \n \nAND  Gate  : \nSimilarly, by connecting the inverter at the output of the NAND gate, we can",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 18,
+            "chunk_index": 1
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p18_c2",
+        "content": "gate. The CMOS OR gate is shown below.  \n \nAND  Gate  : \nSimilarly, by connecting the inverter at the output of the NAND gate, we can \nimplement AND gate. The CMOS AND gate is shown below.",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 18,
+            "chunk_index": 2
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p19_c1",
+        "content": "Implementation  of XOR Gate  and XNOR  using  CMOS  Logic  : \nSimilarly, the implementation of XOR and XNOR gate is shown below.  \nXOR  Gate:  \n \nXNOR  Gate  :",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 19,
+            "chunk_index": 1
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p20_c1",
+        "content": "AOI Gate  and OAI Gate : \nAOI (and -or-invert)  and OAI (or-and-invert)  gates  are two basic  \nconfigurations  that can be realized  using  CMOS  logic.  The CMOS  \nrealization  of these  two types  of gates  is shown  below.  Note  that the two \ngates  are dual  to each  other.  The PDN  of the AOI gate  is structurally  \nsimilar  to the OAI gate's  PUN,  and the AOI gate's  PUN  is structurally  \nsimilar  to the PDN  of the OAI gate .",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 20,
+            "chunk_index": 1
+        }
+    },
+    {
+        "chunk_id": "VLSI_MOD3.pdf_p21_c1",
+        "content": "Design of CMOS Full-adder Circuit  \nA full -adder circuit has three inputs: A, B, and Carry -in (Cin) and two outputs: Sum  \nand Carry -out ( Cout). The truth table of a full -adder circuit is shown in Table 6.2.  \nBoolean expressions for the Sum and Cout are given by  \nSum = ABCin + ABCin + ABCin + ABCin  \nCout = AB + ACin + BCin  \nAs shown in Table  below , taking Cout as input, we could simplify the expression for  \nSum as",
+        "metadata": {
+            "source": "VLSI_MOD3.pdf",
+            "extension": ".pdf",
+            "last_modified": "2026-04-15 11:15:43",
+            "page": 21,
+            "chunk_index": 1
+        }
+    }
+]
