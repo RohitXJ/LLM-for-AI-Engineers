@@ -12,10 +12,11 @@ This repository is designed to prove **Accuracy, Logic, and Reliability**. Every
 #### 📂 [Module 01: The Retrieval Foundation](./Module-01-Retrieval-Foundation/)
 *Mastering how text becomes searchable "knowledge".*
 - **[💸 The LLM Budgeting Tool](./Module-01-Retrieval-Foundation/01-Tokenization-Context-Windows/Project/)**
-  - *Focus:* Token auditing, cost projection, and context window visualization across GPT-4o, Llama 3, and DeepSeek.
+  - *Focus:* Token auditing, cost projection, and context window visualization.
 - **[🏗️ CHUNKER-PRO CLI](./Module-01-Retrieval-Foundation/02-Atomic-Chunking-Strategies/Project/)**
-  - *Focus:* Multi-strategy text splitting (Recursive, Token, Semantic) with adaptive semantic thresholding and metadata injection.
-- **[Vector Embeddings & Databases](./Module-01-Retrieval-Foundation/03-Vector-Embeddings/)** (Upcoming)
+  - *Focus:* Multi-strategy text splitting (Recursive, Token, Semantic).
+- **[🧠 Semantic Memory Engine](./Module-01-Retrieval-Foundation/04-Vector-Databases/Project/)**
+  - *Focus:* Production-grade **ChromaDB** implementation featuring adaptive semantic chunking, multi-format file parsing, and a live Streamlit chat interface.
 - **[Naive RAG Loop Implementation](./Module-01-Retrieval-Foundation/05-Naive-RAG-Loop/)** (Upcoming)
 
 #### 📂 [Module 02: Advanced Retrieval](./Module-02-Advanced-Retrieval/)

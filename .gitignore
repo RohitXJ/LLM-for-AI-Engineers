@@ -186,3 +186,4 @@ Module-01-Retrieval-Foundation/02-Atomic-Chunking-Strategies/Project/Data/test_d
 Module-01-Retrieval-Foundation/02-Atomic-Chunking-Strategies/Project/Data/VLSI_MOD3.pdf
 *.bin
 *.sqlite3
+/Module-01-Retrieval-Foundation/04-Vector-Databases/Project/knowledge_base
