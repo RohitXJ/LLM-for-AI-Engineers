@@ -6,6 +6,8 @@
 
 A production-grade **Retrieval-Augmented Generation (RAG)** foundation that transforms unstructured documents into a searchable, semantic knowledge base. This project demonstrates the transition from simple keyword search to advanced semantic memory.
 
+![Semantic Memory Engine UI](imgs/UI.png)
+
 ---
 
 ## 🚀 Key Features
@@ -15,6 +17,12 @@ A production-grade **Retrieval-Augmented Generation (RAG)** foundation that tran
 - **Auto-Embedding Pipeline**: Integration with ChromaDB's built-in `all-MiniLM-L6-v2` model for high-performance, low-latency text vectorization.
 - **Interactive Chat Interface**: A modern Streamlit UI providing a "ChatGPT-like" experience for document interrogation.
 - **Metadata-Rich Retrieval**: Every search result tracks its source, page number, and similarity score for full explainability.
+
+### 📂 Visual Walkthrough
+
+| **Data Control Center** | **Query & Retrieval** |
+|:---:|:---:|
+| ![Data Control Center](imgs/data_control_center.png) | ![Query and Retrieval](imgs/query_and_retrival.png) |
 
 ---
 
