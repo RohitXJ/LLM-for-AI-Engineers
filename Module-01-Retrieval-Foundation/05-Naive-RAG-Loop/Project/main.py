@@ -20,13 +20,9 @@ def chroma_init()->object:
     Initializes the chromadb
     """
     client = chromadb.PersistentClient(path=VDB_loc)
-    langchain_embed_model = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
     collection = client.get_or_create_collection(
         name=collection_name
     )
-
-    global EMBED_MODEL
-    EMBED_MODEL = langchain_embed_model
     return collection
 
 def retrieve_with_sources(query, collection):
@@ -101,6 +97,9 @@ def file_dump(dir_path, collection):
 
 
 def semantic_chunking(TEXT,percentile_threshold=95,chunk_size=500,chunk_overlap=50):
+    EMBED_MODEL = HuggingFaceEmbeddings(
+        model_name="all-MiniLM-L6-v2"
+    )
     # 1. Semantic Splitting (Meaning-based)
     semantic_splitter = SemanticChunker(
         embeddings=EMBED_MODEL, 
@@ -112,7 +111,7 @@ def semantic_chunking(TEXT,percentile_threshold=95,chunk_size=500,chunk_overlap=
         chunk_size=chunk_size,
         chunk_overlap=chunk_overlap,
         length_function=lambda x: len(x.split()), # Force word-count instead of characters
-        separators=["\n\n", "\n", " ", ""]
+        separators=["\n\n", "\n", "\t", " ", ""] 
     )
 
     # Execution
@@ -157,7 +156,30 @@ def extract_data(file):
 ###-----LLM BLOCK-----###
 
 def chat_window(VDB):
-    pass
+    query = ''
+    while True:
+        query = input("\n-> ")
+        if query.lower() == ("bye" or "exit"):
+            print("\nAI-> Seeya!")
+            break
+        context = retrieve_with_sources(query,VDB)
+        system_prompt = (
+            "You are a strict Document Assistant. Answer ONLY using the provided context. "
+            "If the answer is missing from the context, say: 'I don't have enough information in the documents.' "
+            "Always cite your source by mentioning the specific section or document name within ' '. "
+            "Do not use external knowledge. Be concise and do not answer with unnecessary context info."
+            "You can be asked to summarize,so do so when asked for."
+            "Reply only in simple text, no markdown."
+        )
+        user_prompt = f"CONTEXT:\n{context}\n\nQUESTION: {query}"
+        
+        print("\n")
+        
+        response = ollama.chat(model=CHAT_MODEL, messages=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt}
+        ])
+        print(f"AI-> {response['message']['content']}")
 
 ###-----MAIN CONTROLLER-----###
 
@@ -165,6 +187,8 @@ def main(file_dir):
     collection = chroma_init()
     if file_dir:
         file_dump(file_dir,collection)
+    print("Agent is ready to chat with your files!\n")
+    print("Hi,I'm NV7,\nready to assist you with your queries from your documents!")
     chat_window(collection)
     
 
