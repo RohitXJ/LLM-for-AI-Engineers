@@ -3,7 +3,11 @@ from pathlib import Path
 import chromadb
 from chromadb.utils import embedding_functions
 from sklearn.metrics.pairwise import cosine_similarity
+from langchain_huggingface import HuggingFaceEmbeddings
 import numpy as np
+
+from langchain_experimental.text_splitter import SemanticChunker
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 collection_name = "DOC_CHAT"
 VDB_loc = f"./chroma_db"
@@ -15,46 +19,69 @@ def chroma_init()->object:
     Initializes the chromadb
     """
     client = chromadb.PersistentClient(path=VDB_loc)
-    default_ef = embedding_functions.DefaultEmbeddingFunction()  
+    langchain_embed_model = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
     collection = client.get_or_create_collection(
-        name=collection_name,
-        embedding_function=default_ef
+        name=collection_name
     )
+
     global EMBED_MODEL
-    EMBED_MODEL = collection._embedding_function
+    EMBED_MODEL = langchain_embed_model
     return collection
 
 ###-----FILE and DATA ENTRY-----###
 
 def file_dump(dir_path, collection):
     dir_path = Path(dir_path)
+    if not dir_path.exists():
+        print(f"Error: Directory {dir_path} does not exist.")
+        return
+
     file_paths = [str(f) for f in dir_path.iterdir() if f.is_file()]
     
     #Put to Async later
-    def file_injested_chk(filename):
+    def file_ingested_chk(filename):
         existing = collection.get(where={"source": filename}, limit=1)
         if existing["ids"]:
             print(f"Skipping {filename}: Already exists in DB.")
             return True
         else:
-            print(f"Dumping {filename} into DB.")
             return False
     #Put to Async later
     def dump_to_vector_DB(documents,metadatas):
-        print(documents)
+        IDS = []
+        DOC = []
+        META = []
+        for i,doc in enumerate(documents):
+            chunk_id = f"{metadatas['source']}_chunk_{i+1}"
+            IDS.append(chunk_id)
+            DOC.append(doc.page_content)
+            META.append({**metadatas,"chunk_index":i+1})
+        
+        if IDS:
+            collection.upsert(
+            ids=IDS,
+            documents=DOC,
+            metadatas=META
+            )
 
     #Put to Async later
-    print(file_paths)
+    print(f"Found {len(file_paths)} files in {dir_path}")
     for f in file_paths:
-        if not file_injested_chk(os.path.basename(f)):
-            documents = injest_data_pool(f)
-            chunks = semantic_chunking(TEXT=documents['content'])
-            dump_to_vector_DB(documents=chunks,metadatas=documents['metadata'])
+        file_name = os.path.basename(f)
+        if not file_ingested_chk(file_name):
+            try:
+                documents = extract_data(f)
+                print(f"Dumping {file_name} into DB...")
+                chunks = semantic_chunking(TEXT=documents[0]['content'])
+                dump_to_vector_DB(documents=chunks,metadatas=documents[0]['metadata'])
+                print(f"{file_name} added to DB successfully ({len(chunks)} chunks)")
+            except ValueError as ve:
+                print(f"Skipping {file_name}: {ve}")
+            except Exception as e:
+                print(f"Error processing {file_name}: {e}")
 
 
 def semantic_chunking(TEXT,percentile_threshold=95,chunk_size=500,chunk_overlap=50):
-    from langchain_experimental.text_splitter import SemanticChunker
-    from langchain_text_splitters import RecursiveCharacterTextSplitter
     # 1. Semantic Splitting (Meaning-based)
     semantic_splitter = SemanticChunker(
         embeddings=EMBED_MODEL, 
@@ -75,7 +102,7 @@ def semantic_chunking(TEXT,percentile_threshold=95,chunk_size=500,chunk_overlap=
     return final_chunks
 
 
-def injest_data_pool(file):
+def extract_data(file):
     path = Path(file)
     ext = path.suffix.lower()
     if not path.exists():
