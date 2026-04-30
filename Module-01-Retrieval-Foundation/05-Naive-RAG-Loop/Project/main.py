@@ -1,4 +1,4 @@
-import asyncio, argparse, os, datetime
+import argparse, os, datetime,time
 from pathlib import Path
 import chromadb
 from chromadb.utils import embedding_functions
@@ -11,6 +11,9 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 collection_name = "DOC_CHAT"
 VDB_loc = f"./chroma_db"
+EMBED_MODEL = HuggingFaceEmbeddings(
+        model_name="all-MiniLM-L6-v2"
+    )
 CHAT_MODEL = "gpt-oss:20b-cloud"
 
 ###-----CHROMA-DB-----###
@@ -97,9 +100,6 @@ def file_dump(dir_path, collection):
 
 
 def semantic_chunking(TEXT,percentile_threshold=95,chunk_size=500,chunk_overlap=50):
-    EMBED_MODEL = HuggingFaceEmbeddings(
-        model_name="all-MiniLM-L6-v2"
-    )
     # 1. Semantic Splitting (Meaning-based)
     semantic_splitter = SemanticChunker(
         embeddings=EMBED_MODEL, 
@@ -186,7 +186,11 @@ def chat_window(VDB):
 def main(file_dir):
     collection = chroma_init()
     if file_dir:
+        start_time = time.perf_counter()
         file_dump(file_dir,collection)
+        end_time = time.perf_counter()
+        duration = end_time - start_time
+        print(f"Data ingested in {duration:.4f} seconds")
     print("Agent is ready to chat with your files!\n")
     print("Hi,I'm NV7,\nready to assist you with your queries from your documents!")
     chat_window(collection)
