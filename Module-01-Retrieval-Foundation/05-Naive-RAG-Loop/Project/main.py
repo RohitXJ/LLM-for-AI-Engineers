@@ -5,12 +5,13 @@ from chromadb.utils import embedding_functions
 from sklearn.metrics.pairwise import cosine_similarity
 from langchain_huggingface import HuggingFaceEmbeddings
 import numpy as np
-
+import ollama
 from langchain_experimental.text_splitter import SemanticChunker
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 collection_name = "DOC_CHAT"
 VDB_loc = f"./chroma_db"
+CHAT_MODEL = "gpt-oss:20b-cloud"
 
 ###-----CHROMA-DB-----###
 
@@ -27,6 +28,24 @@ def chroma_init()->object:
     global EMBED_MODEL
     EMBED_MODEL = langchain_embed_model
     return collection
+
+def retrieve_with_sources(query, collection):
+    """Querying is simpler: just pass the string text."""
+    results = collection.query(
+        query_texts=[query],
+        n_results=2
+    )
+    
+    # Unpack from the batch structure [0]
+    docs = results["documents"][0]
+    metas = results["metadatas"][0]
+    
+    context_parts = []
+    for doc, meta in zip(docs, metas):
+        source_info = f"[Source: {meta.get('source')}]"
+        context_parts.append(f"{source_info} {doc}")
+    
+    return "\n".join(context_parts)
 
 ###-----FILE and DATA ENTRY-----###
 
@@ -135,12 +154,19 @@ def extract_data(file):
     except Exception as e:
         raise Exception(f"Error processing {file}: {str(e)}")
 
+###-----LLM BLOCK-----###
+
+def chat_window(VDB):
+    pass
+
 ###-----MAIN CONTROLLER-----###
 
 def main(file_dir):
     collection = chroma_init()
     if file_dir:
         file_dump(file_dir,collection)
+    chat_window(collection)
+    
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="The Semantic Memory Engine")
