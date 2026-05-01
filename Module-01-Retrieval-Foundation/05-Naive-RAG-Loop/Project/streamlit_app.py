@@ -116,8 +116,19 @@ if "custom_model" not in st.session_state:
 # -----------------------------------------------------
 # CORE RETRIEVAL LOGIC
 # -----------------------------------------------------
-def retrieve_knowledge(query: str, db_collection: chromadb.Collection):
-    results = db_collection.query(query_texts=[query], n_results=4)
+def retrieve_knowledge(query: str, db_collection: chromadb.Collection, target_sources: list = None):
+    where_clause = None
+    if target_sources:
+        if len(target_sources) == 1:
+            where_clause = {"source": target_sources[0]}
+        else:
+            where_clause = {"source": {"$in": target_sources}}
+            
+    results = db_collection.query(
+        query_texts=[query], 
+        n_results=4,
+        where=where_clause
+    )
     if not results["documents"] or not results["documents"][0]:
         return "", []
         
@@ -239,6 +250,12 @@ with context_col:
 
 # ---- LEFT COLUMN: CHAT INTERFACE ----
 with chat_col:
+    # Display available tags so the user knows what they can type
+    all_docs_meta = collection.get(include=["metadatas"])
+    if all_docs_meta and all_docs_meta.get("metadatas"):
+        unique_sources_hint = sorted(list(set(m["source"] for m in all_docs_meta["metadatas"] if m and "source" in m)))
+        if unique_sources_hint:
+            st.caption(f"🏷️ **Available tags:** {', '.join([f'`@{s}`' for s in unique_sources_hint])}")
     # Render chat history
     for msg in st.session_state.messages:
         with st.chat_message(msg["role"], avatar="🤖" if msg["role"] == "assistant" else "👤"):
@@ -255,10 +272,30 @@ with chat_col:
         with st.chat_message("user", avatar="👤"):
             st.markdown(prompt)
 
+        # Detect tags directly from the user's query
+        all_docs_meta = collection.get(include=["metadatas"])
+        target_sources = []
+        
+        if all_docs_meta and all_docs_meta.get("metadatas"):
+            unique_sources = set(m["source"] for m in all_docs_meta["metadatas"] if m and "source" in m)
+            for src in unique_sources:
+                # Support @filename.txt or just filename.txt anywhere in the prompt
+                if f"{src}" in prompt or src in prompt:
+                    target_sources.append(src)
+                    
+        # Determine the query to send to the Vector DB
+        search_query_stripped = prompt
+        for src in target_sources:
+            search_query_stripped = search_query_stripped.replace(f"@{src}", "").replace(src, "").strip()
+            
+        # If the user ONLY typed the tag without a real question, use a fallback summary query
+        # Otherwise, keep the original prompt completely intact so the Vector DB gets all semantic keywords!
+        vector_query = prompt if search_query_stripped else "What is the summary and key information of this document?"
+
         # Generate assistant response
         with st.chat_message("assistant", avatar="🤖"):
             with st.spinner("Searching vector space..."):
-                context, sources = retrieve_knowledge(prompt, collection)
+                context, sources = retrieve_knowledge(vector_query, collection, target_sources=target_sources)
                 
             # Update session state for the Context Viewer
             st.session_state.last_context = context
