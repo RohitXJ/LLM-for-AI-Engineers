@@ -10,8 +10,8 @@ class DocumentMetadata(BaseModel):
         description="The primary subject matter of the text (e.g., Cybersecurity, Financial Audit, HR Policy, Machine Learning)."
     )
     year: int = Field(
-        default=2024,
-        description="The specific year the information pertains to. If no year is mentioned, default to 2024."
+        default=2026,
+        description="The primary year or era discussed in the text, or the publication year if no specific date is mentioned. default to 2026."
     )
     complexity: Literal["Beginner", "Intermediate", "Advanced"] = Field(
         description="The technical depth of the content. Beginner (General), Intermediate (Practitioner), Advanced (Expert)."
@@ -29,6 +29,6 @@ class SearchFilters(BaseModel):
     All fields are optional because a user might only filter by one or two criteria.
     """
     topic: Optional[str] = Field(None, description="Extract the topic filter if mentioned (e.g., 'security').")
-    year: Optional[int] = Field(None, description="Extract the specific year if mentioned (e.g., 2023).")
+    year: Optional[int] = Field(None, description="Extract the specific year if mentioned (e.g., 2023). default to 2026")
     complexity: Optional[str] = Field(None, description="Extract complexity if mentioned ('Beginner', 'Intermediate', 'Advanced').")
     priority: Optional[str] = Field(None, description="Extract priority if mentioned ('Low', 'Medium', 'High').")
