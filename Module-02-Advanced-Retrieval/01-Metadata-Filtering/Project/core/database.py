@@ -17,8 +17,45 @@ class Chroma_VDB():
         else:
             return False
     
-    def context_query(self, query:str, filter:List[dict])-> chromadb.QueryResult:
-        pass
+    def context_query(self, query:str, filter:Optional[dict] = None, n_results: int = 3)-> chromadb.QueryResult:
+        """
+        Search the collection for relevant documents, optionally applying a metadata filter.
+        """
+        try:
+            results = self.collection.query(
+                query_texts=[query],
+                n_results=n_results,
+                where=filter
+            )
+            return results
+        except Exception as e:
+            print(f"Error during context query: {e}")
+            return {"ids": [], "documents": [[]], "metadatas": [[]]}
+
+    def get_unique_values(self, key: str) -> List[str]:
+        """
+        Retrieves all unique values for a specific metadata key in the collection.
+        Useful for providing 'context' to the LLM for filter generation.
+        """
+        try:
+            results = self.collection.get(include=['metadatas'])
+            metadatas = results['metadatas']
+            unique_values = {m.get(key) for m in metadatas if m and m.get(key)}
+            return sorted(list(unique_values))
+        except Exception as e:
+            print(f"Error fetching unique values for {key}: {e}")
+            return []
 
     def context_ingest(self, ids:List[str], docs:List[str], meta:List[dict])-> None:
-        pass
+        """
+        Add documents and their associated metadata to the ChromaDB collection.
+        """
+        try:
+            self.collection.add(
+                ids=ids,
+                documents=docs,
+                metadatas=meta
+            )
+        except Exception as e:
+            print(f"Error during context ingest: {e}")
+            raise e

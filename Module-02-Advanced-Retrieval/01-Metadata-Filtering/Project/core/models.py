@@ -1,5 +1,6 @@
-from typing import Optional, Literal
-from pydantic import BaseModel, Field
+from typing import Optional, Literal, Any
+from pydantic import BaseModel, Field, field_validator
+import re
 
 class DocumentMetadata(BaseModel):
     """
@@ -22,6 +23,36 @@ class DocumentMetadata(BaseModel):
     priority: Literal["Low", "Medium", "High"] = Field(
         description="The urgency or importance of the information relative to a corporate or research setting."
     )
+
+    @field_validator("year", mode="before")
+    @classmethod
+    def parse_year(cls, v: Any) -> int:
+        if isinstance(v, str):
+            # Extract digits (e.g., "2030s" -> 2030)
+            match = re.search(r"\d{4}", v)
+            if match:
+                return int(match.group())
+        return v if isinstance(v, int) else 2026
+
+    @field_validator("complexity", "priority", mode="before")
+    @classmethod
+    def normalize_literals(cls, v: Any) -> str:
+        if isinstance(v, str):
+            v = v.strip().capitalize()
+            # Handle variations like "advanced" -> "Advanced" or "moderate" -> "Intermediate"
+            mapping = {
+                "Moderate": "Intermediate",
+                "High": "High",
+                "Medium": "Medium",
+                "Low": "Low",
+                "Beginner": "Beginner",
+                "Advanced": "Advanced",
+                "Professional": "Advanced"
+            }
+            # Extract only the first word in case of "Intermediate (suitable for...)"
+            v_clean = v.split()[0]
+            return mapping.get(v_clean, v_clean)
+        return v
 
 class SearchFilters(BaseModel):
     """

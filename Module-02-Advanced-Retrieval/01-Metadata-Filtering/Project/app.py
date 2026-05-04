@@ -4,13 +4,11 @@ import os, uuid
 
 COLLECTION_NAME = "SMART_DOC_CHAT"
 VDB_PATH = "./chroma_db"
-LLM = Gemini()
+LLM = Ollama(model="gpt-oss:20b-cloud")
 chunker = Chunker()
 chroma = Chroma_VDB(DB_PATH=VDB_PATH, collection_name=COLLECTION_NAME)
 
 def main(path):
-    #Placeholder for LLM objects
-
     dir_path = Path(path)
     if not dir_path.exists():
         raise FileNotFoundError(f"File not found: {dir_path}")
@@ -20,22 +18,52 @@ def main(path):
     for file_name in file_names:
         raw_data = read_data(file_path=file_name)
 
-        print(f"RAW DATA\n{raw_data}\n")#CHECKING
+        print(f"\n--- Processing: {os.path.basename(file_name)} ---")
 
         if not chroma.file_check_query(os.path.basename(file_name)):
-            chunks,ids = chunker.chunk(raw_text=raw_data['content'])
-            data_ingest(chunks=chunks, ch_ids=ids, file_meta=raw_data["metadata"])
+            # Step 1: Extract Global Anchor Metadata
+            global_meta = LLM.extract_document_metadata(content=raw_data['content'])
+            
+            # Step 2: Chunk and Ingest with Global Anchor
+            chunks, ids = chunker.chunk(raw_text=raw_data['content'])
+            data_ingest(chunks=chunks, ch_ids=ids, file_meta={**global_meta, **raw_data["metadata"]})
+
+    print("\n--- OmniSearch Ready! (Type 'exit' to quit) ---")
+    while True:
+        query = input("<- Query: ")
+        if query.lower() in ["bye", "exit"]:
+            break
+        
+        # Step 3: Fetch existing tags to guide the LLM
+        existing_topics = chroma.get_unique_values("topic")
+        existing_years = chroma.get_unique_values("year")
+        
+        # Step 4: Self-Querying Retrieval with Tag Awareness
+        filters = LLM.generate_filter(
+            user_query=query, 
+            existing_metadata={"topic": existing_topics, "year": existing_years}
+        )
+        print(f"[Logic] Applied Filters: {filters}")
+        
+        results = chroma.context_query(query=query, filter=filters)
+        
+        if not results['documents'][0]:
+            print("[AI]: No relevant information found in the database with those filters.")
+            continue
+            
+        context = "\n\n".join(results['documents'][0])
+        LLM.answer_question(context=context, query=query)
 
 def data_ingest(chunks: list[str], ch_ids: list[str], file_meta: dict)->None:
     ids = []
     metadata = []
-    for chunk,c_id in zip(chunks,ch_ids):
+    for chunk, c_id in zip(chunks, ch_ids):
         ids.append(f"{file_meta['source']}_{c_id}")
-        meta_ext = LLM.extract_metadata(context=chunk)
-        metadata.append({**meta_ext,**file_meta})
+        # Extract local nuance while respecting the global anchor
+        meta_ext = LLM.extract_metadata(context=chunk, global_meta=file_meta)
+        metadata.append({**meta_ext, **file_meta})
     
     try:
-        print(f"\nID:{ids}\ncontext:{chunks}\nmetadata:{metadata}")#CHECKING
         chroma.context_ingest(
             ids=ids,
             docs=chunks,
