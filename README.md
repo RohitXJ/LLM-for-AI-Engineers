@@ -17,11 +17,14 @@ This repository is designed to prove **Accuracy, Logic, and Reliability**. Every
   - *Focus:* Multi-strategy text splitting (Recursive, Token, Semantic).
 - **[🧠 Semantic Memory Engine](./Module-01-Retrieval-Foundation/04-Vector-Databases/Project/)**
   - *Focus:* Production-grade **ChromaDB** implementation featuring adaptive semantic chunking, multi-format file parsing, and a live Streamlit chat interface.
-- **[Naive RAG Loop Implementation](./Module-01-Retrieval-Foundation/05-Naive-RAG-Loop/)** (Upcoming)
+- **[🕵️ Local Knowledge Explorer (Naive RAG)](./Module-01-Retrieval-Foundation/05-Naive-RAG-Loop/Project/)**
+  - *Focus:* End-to-end basic retrieval pipeline with distance thresholds and grounded response logic.
 
 #### 📂 [Module 02: Advanced Retrieval](./Module-02-Advanced-Retrieval/)
 *Fixing accuracy issues and optimizing search relevance.*
-- **Metadata Filtering**, **Hybrid Search**, **Re-ranking**, and **Query Transformation**.
+- **[🔎 OmniSearch: Metadata Filtering](./Module-02-Advanced-Retrieval/01-Metadata-Filtering/Project/)**
+  - *Focus:* Self-querying retrieval, global metadata anchors, and defense-in-depth Pydantic validation.
+- **Hybrid Search**, **Re-ranking**, and **Query Transformation** (Upcoming).
 
 #### 📂 [Module 03: Structured Logic & Extraction](./Module-03-Structured-Logic-Extraction/)
 *Guaranteeing valid outputs and tool integration.*

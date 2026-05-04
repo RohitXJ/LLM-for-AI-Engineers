@@ -11,6 +11,36 @@ The core challenge of metadata-driven RAG is **Tag Drift** (where chunks of the 
 1.  **Global Anchor Extraction:** During ingestion, the system extracts high-level metadata from the entire document first. This "Anchor" is then forced onto every individual chunk, ensuring the document's `topic` and `year` remain consistent across thousands of vectors.
 2.  **Self-Querying Retrieval:** The system doesn't just search for text. It uses an LLM to translate natural language (e.g., *"What happened in 2024?"*) into structured database filters (e.g., `{"year": 2024}`).
 
+### 🧠 Solving the "Different Metadata for Each Chunk" Problem
+A common pitfall (initially encountered while following the basic extraction plan) is that extracting metadata independently for every chunk of the same document leads to massive inconsistency. For example, Chunk 1 might be tagged as `topic: Cybersecurity` while Chunk 10 is tagged as `topic: IT Policy`, even though they are part of the same report. This "fragmentation" makes filtering near-impossible.
+
+**The Solution: Global Anchors**
+To solve this, OmniSearch implements a **Global Metadata Anchor**. 
+-   **Step 1:** The system "reads" the first 8,000 characters of the document to establish the high-level ground truth (Topic, Year, Audience).
+-   **Step 2:** When processing individual chunks, the LLM is provided with this global context.
+-   **Step 3:** The code merges local nuance with global tags but **enforces** global consistency on critical fields.
+This ensures that every chunk of a single document is searchable under the same primary filters, solving the fragmentation problem found in naive implementations.
+
+---
+
+## 🖥️ Visual Walkthrough
+
+### 1. The OmniSearch Interface (Base UI)
+A clean, professional dashboard for managing your document intelligence.
+![Base UI](./imgs/base_UI.png)
+
+### 2. Model & Database Control
+Configure your local Ollama model and manage indexed documents directly from the sidebar.
+![Control Panel](./imgs/model_DB_control_panel.png)
+
+### 3. Live Database Filters
+Visualize the distribution of metadata (Topics, Years, Complexity) currently stored in your vector database.
+![Filters Dashboard](./imgs/metadata_in_DB_dashboard.png)
+
+### 4. Smart Query & Result
+Watch as natural language queries are transformed into structured filters, providing highly relevant, grounded answers.
+![Query and Result](./imgs/Query_and_Result_showing.png)
+
 ---
 
 ## 🛠️ Tech Stack
