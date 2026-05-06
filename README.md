@@ -24,7 +24,9 @@ This repository is designed to prove **Accuracy, Logic, and Reliability**. Every
 *Fixing accuracy issues and optimizing search relevance.*
 - **[🔎 OmniSearch: Metadata Filtering](./Module-02-Advanced-Retrieval/01-Metadata-Filtering/Project/)**
   - *Focus:* Self-querying retrieval, global metadata anchors, and defense-in-depth Pydantic validation.
-- **Hybrid Search**, **Re-ranking**, and **Query Transformation** (Upcoming).
+- **[🛠️ SRE-Pulse: Hybrid Search Engine](./Module-02-Advanced-Retrieval/02-Hybrid-Search/Project/)**
+  - *Focus:* Dual-mode retrieval (BM25 + Vector) fused via **Reciprocal Rank Fusion (RRF)**. High-performance persistence (Pickle) and idempotent data sync.
+- **Re-ranking** and **Query Transformation** (Upcoming).
 
 #### 📂 [Module 03: Structured Logic & Extraction](./Module-03-Structured-Logic-Extraction/)
 *Guaranteeing valid outputs and tool integration.*
