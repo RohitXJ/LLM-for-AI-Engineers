@@ -1,0 +1,242 @@
+[
+  {
+    "id": "SRE_001",
+    "title": "PostgreSQL Connection Timeout",
+    "error_code": "ORA-12170",
+    "content": "Clients are reporting intermittent connection timeouts when reaching the production database cluster. Initial investigation shows the handshake completes but the session drops before the first query. This usually happens when the firewall 'idle-timeout' is shorter than the database 'keepalive' settings.",
+    "solution": "Increase the net.ipv4.tcp_keepalive_time on the host and match it with the load balancer idle timeout (300s).",
+    "category": "Database"
+  },
+  {
+    "id": "SRE_002",
+    "title": "Slow API Response (High Latency)",
+    "error_code": "LAT-99",
+    "content": "The system feels sluggish under heavy load. Users report that pages take forever to load, and the spinning icon persists for 10+ seconds. Metrics show a spike in p99 response times, although CPU and Memory usage on the application servers remain within normal bounds.",
+    "solution": "Investigate downstream microservices for cascading failures and check for unoptimized database joins in the 'Order' service.",
+    "category": "Performance"
+  },
+  {
+    "id": "SRE_003",
+    "title": "Redis OOM (Out of Memory)",
+    "error_code": "ERR_REDIS_OOM",
+    "content": "Redis instance failed with 'OOM command not allowed when used memory > 'maxmemory''. This occurred during the nightly cache-warming job where thousands of keys are updated simultaneously.",
+    "solution": "Implement an Eviction Policy (e.g., allkeys-lru) and increase the instance memory size.",
+    "category": "Cache"
+  },
+  {
+    "id": "SRE_004",
+    "title": "Kubernetes Pod CrashLoopBackOff",
+    "error_code": "K8S_EXIT_137",
+    "content": "A deployment is stuck in CrashLoopBackOff. Describing the pod reveals 'Exit Code 137', indicating the process was killed by an external signal, likely the OOM Killer. The logs show the Java heap memory is exceeding the container limit.",
+    "solution": "Adjust the resource limits in the deployment manifest and check for memory leaks in the JVM application.",
+    "category": "Kubernetes"
+  },
+  {
+    "id": "SRE_005",
+    "title": "DNS Resolution Failure",
+    "error_code": "E_NO_RECOVERY",
+    "content": "Internal microservices cannot resolve the address of the 'auth-service.internal'. Requests are failing with 'getaddrinfo ENOTFOUND'. CoreDNS logs show thousands of 'NXDOMAIN' responses during peak traffic.",
+    "solution": "Scale the CoreDNS deployment and verify the ndots configuration in the resolv.conf file.",
+    "category": "Networking"
+  },
+  {
+    "id": "SRE_006",
+    "title": "Kafka Consumer Lag Spike",
+    "error_code": "KFK_LAG_400",
+    "content": "The 'inventory-processor' group is falling behind. Consumer lag has jumped from 1,000 to 500,000 messages. The processing logic is slow, causing the consumer to exceed the 'max.poll.interval.ms' and trigger constant rebalancing.",
+    "solution": "Increase the number of partitions and consumer instances, or optimize the processing loop to handle messages faster.",
+    "category": "Messaging"
+  },
+  {
+    "id": "SRE_007",
+    "title": "SSL Certificate Expiry",
+    "error_code": "CERT_HAS_EXPIRED",
+    "content": "Browsers are showing 'Your connection is not private' for the main domain. The automated Let's Encrypt renewal script failed due to a change in the Cloudflare API permissions.",
+    "solution": "Manually trigger the certbot renewal and update the API token in the renewal configuration.",
+    "category": "Security"
+  },
+  {
+    "id": "SRE_008",
+    "title": "Disk I/O Throttling on EBS",
+    "error_code": "AWS_EBS_THROTTLE",
+    "content": "Database writes are extremely slow. AWS Console shows that the GP3 volume has exhausted its burst IOPS credits. Disk utilization is hovering at 100% even though throughput is low.",
+    "solution": "Provision higher IOPS for the EBS volume or switch to an IO2 type for consistent high-performance requirements.",
+    "category": "Storage"
+  },
+  {
+    "id": "SRE_009",
+    "title": "Deadlock in MySQL Transactions",
+    "error_code": "ER_LOCK_DEADLOCK",
+    "content": "Concurrent updates to the 'user_accounts' table are failing with 'Deadlock found when trying to get lock; try restarting transaction'. Two background jobs are attempting to update the same rows in a different order.",
+    "solution": "Enforce a strict ordering of row updates in the application logic to prevent circular wait conditions.",
+    "category": "Database"
+  },
+  {
+    "id": "SRE_010",
+    "title": "Zombie Processes on Web Tier",
+    "error_code": "Z_PROC_99",
+    "content": "The web server has hundreds of defunct processes that are not being reaped by the parent. While they don't consume CPU, they are exhausting the process ID (PID) limit, preventing new connections.",
+    "solution": "Fix the signal handling in the parent process (likely a custom Python wrapper) to properly handle SIGCHLD.",
+    "category": "Operating System"
+  },
+  {
+    "id": "SRE_011",
+    "title": "Nginx 502 Bad Gateway",
+    "error_code": "NGX_ERR_502",
+    "content": "The frontend is returning 502 errors. Nginx error logs show 'connect() failed (111: Connection refused) while connecting to upstream'. The Gunicorn backend has crashed due to an unhandled exception in the middleware.",
+    "solution": "Restart Gunicorn and implement better error handling in the Python middleware to prevent total service crashes.",
+    "category": "Networking"
+  },
+  {
+    "id": "SRE_012",
+    "title": "S3 Access Denied (IAM Policy)",
+    "error_code": "403_FORBIDDEN_S3",
+    "content": "The image-upload service is failing to write files to the 'assets-prod' bucket. Despite the role having 'AmazonS3FullAccess', the bucket has a strict Resource-Based Policy that only allows specific VPC endpoints.",
+    "solution": "Update the S3 Bucket Policy to include the VPC endpoint used by the application servers.",
+    "category": "Security"
+  },
+  {
+    "id": "SRE_013",
+    "title": "Elasticsearch Red Cluster Status",
+    "error_code": "ES_SHARD_UNASSIGNED",
+    "content": "The search cluster is 'Red'. Several primary shards are 'UNASSIGNED' after a node failure. The cluster has insufficient disk space on the remaining nodes to rebalance the data.",
+    "solution": "Add a new node to the cluster or delete old indices to free up space and allow the master to assign shards.",
+    "category": "Search"
+  },
+  {
+    "id": "SRE_014",
+    "title": "Prometheus Scrape Timeout",
+    "error_code": "PROM_SCRAPE_FAIL",
+    "content": "Monitoring gaps detected. Prometheus is failing to scrape the '/metrics' endpoint of the 'payment-gateway'. The endpoint is taking >10s to respond because it's performing a heavy database query to calculate metrics.",
+    "solution": "Cache the metric calculations or move them to a background task so the /metrics endpoint returns instantly.",
+    "category": "Monitoring"
+  },
+  {
+    "id": "SRE_015",
+    "title": "Docker Image Pull BackOff",
+    "error_code": "ERR_PULL_LIMIT",
+    "content": "Kubernetes cannot start new pods. Events show 'Failed to pull image: toomanyrequests: You have reached your pull rate limit'. This is due to the team sharing a single Docker Hub account for the entire CI/CD pipeline.",
+    "solution": "Use an internal Container Registry (like ECR or GCR) or authenticate with a Docker Hub Pro account.",
+    "category": "Kubernetes"
+  },
+  {
+    "id": "SRE_016",
+    "title": "BGP Route Flapping",
+    "error_code": "BGP_STATE_IDLE",
+    "content": "Inter-regional traffic is unstable. The BGP session between the on-prem data center and the cloud VPC is constantly resetting. Logs show 'Hold Timer Expired', indicating that keepalive packets are being dropped or delayed.",
+    "solution": "Check the MTU settings on the VPN/DirectConnect tunnel and ensure firewall rules allow BGP traffic (port 179).",
+    "category": "Networking"
+  },
+  {
+    "id": "SRE_017",
+    "title": "GitHub Actions Runner Timeout",
+    "error_code": "GHA_EXIT_1",
+    "content": "CI/CD pipelines are hanging for 6 hours and then failing. The 'npm install' step is stuck. It turns out a private package repository is down, and the npm client is waiting indefinitely for a response.",
+    "solution": "Set a shorter timeout for the npm client and implement a retry mechanism with an exponential backoff.",
+    "category": "CI/CD"
+  },
+  {
+    "id": "SRE_018",
+    "title": "Logstash Heap Exhaustion",
+    "error_code": "LS_JVM_OOM",
+    "content": "Log pipelines are stalled. Logstash is throwing 'java.lang.OutOfMemoryError: Java heap space'. The system is receiving a massive burst of unstructured logs (Log4Shell exploitation attempts) which is causing the Grok filters to consume massive memory.",
+    "solution": "Increase the LS_JAVA_OPTS heap size and optimize the Grok patterns to be more efficient.",
+    "category": "Logging"
+  },
+  {
+    "id": "SRE_019",
+    "title": "Terraform State Lock (DynamoDB)",
+    "error_code": "TF_STATE_LOCKED",
+    "content": "Engineers cannot run 'terraform apply'. The error states 'Error acquiring the state lock'. A previous run was manually killed, leaving the lock entry in the DynamoDB table.",
+    "solution": "Manually remove the lock from the DynamoDB table using the lock ID provided in the error message.",
+    "category": "Infrastructure"
+  },
+  {
+    "id": "SRE_020",
+    "title": "Vault Token Revocation",
+    "error_code": "VAULT_403_TOKEN",
+    "content": "Application boot-up is failing. It cannot fetch secrets from HashiCorp Vault. The root cause is a security policy that automatically revokes tokens if they are accessed from an unauthorized IP range.",
+    "solution": "Whitelist the new Kubernetes node CIDR in the Vault Auth Role configuration.",
+    "category": "Security"
+  },
+  {
+    "id": "SRE_021",
+    "title": "Database Replication Lag",
+    "error_code": "REPL_LAG_60S",
+    "content": "The standby read-replica is trailing behind the primary by more than 60 seconds. This is causing 'stale data' issues for users in the Asia-Pacific region. Networking throughput between regions is saturated.",
+    "solution": "Optimize the replication stream or increase the network bandwidth between the primary and standby regions.",
+    "category": "Database"
+  },
+  {
+    "id": "SRE_022",
+    "title": "API Gateway Rate Limiting",
+    "error_code": "429_TOO_MANY_REQUESTS",
+    "content": "Our mobile application is getting throttled by the Kong API Gateway. Thousands of requests are returning 429 status codes. Investigation shows a bug in the mobile app's retry logic causing a 'Thundering Herd' effect.",
+    "solution": "Implement exponential backoff with jitter in the mobile app and temporarily increase the rate limits for the affected service.",
+    "category": "Networking"
+  },
+  {
+    "id": "SRE_023",
+    "title": "Istio mTLS Handshake Failure",
+    "error_code": "ISTIO_CERT_MTLS",
+    "content": "Service-to-service communication in the mesh is broken. Service 'A' cannot talk to Service 'B'. The sidecar logs show 'TLS handshake error: remote error: tls: unknown certificate authority'.",
+    "solution": "Restart the istiod control plane and force a rotation of the workload certificates in the affected namespace.",
+    "category": "Service Mesh"
+  },
+  {
+    "id": "SRE_024",
+    "title": "CI/CD Security Gate Failure",
+    "error_code": "SEC_VULN_CRITICAL",
+    "content": "The Jenkins build pipeline was automatically terminated. The Trivy vulnerability scanner detected a CRITICAL CVE in the base Alpine image being used for the production build.",
+    "solution": "Update the Dockerfile to use a patched version of the base image and re-run the security scan.",
+    "category": "Security"
+  },
+  {
+    "id": "SRE_025",
+    "title": "Cloud Cost Spike (FinOps)",
+    "error_code": "BILLING_LIMIT_EXCEEDED",
+    "content": "The monthly cloud bill has projected a 300% increase. Analysis reveals a massive spike in 'Data Transfer Out' costs. A new analytics job is accidentally pulling multi-terabyte datasets across different cloud regions.",
+    "solution": "Refactor the analytics job to run in the same region as the data or use a compressed data format for inter-region transfers.",
+    "category": "FinOps"
+  },
+  {
+    "id": "SRE_026",
+    "title": "Kubernetes CronJob Missed Schedule",
+    "error_code": "CRON_MISSED_DEADLINE",
+    "content": "The 'nightly-db-cleanup' job did not run. The Kubernetes events show 'Cannot determine if job needs to be started: too many missed start time (> 100)'. The job's 'startingDeadlineSeconds' was too restrictive.",
+    "solution": "Clear the old job history and increase the 'startingDeadlineSeconds' value in the CronJob manifest.",
+    "category": "Kubernetes"
+  },
+  {
+    "id": "SRE_027",
+    "title": "AWS Secret Manager Access Error",
+    "error_code": "SECRETS_403_ACCESS",
+    "content": "The application fails to start, citing 'AccessDeniedException' when calling 'GetSecretValue'. The IAM Role attached to the EC2 instance lacks the specific KMS Decrypt permission required for the CMK used to encrypt the secret.",
+    "solution": "Update the IAM Policy to include 'kms:Decrypt' permissions for the specific KMS key used by Secrets Manager.",
+    "category": "Security"
+  },
+  {
+    "id": "SRE_028",
+    "title": "Fluentd Buffer Overflow",
+    "error_code": "FLT_BUFFER_FULL",
+    "content": "Logs are missing from the centralized logging cluster. The Fluentd forwarder is logging 'buffer space has gone to zero'. The local disk partition used for log buffering is 100% full.",
+    "solution": "Increase the disk space for the log buffer or optimize the log throughput to the backend OpenSearch cluster.",
+    "category": "Logging"
+  },
+  {
+    "id": "SRE_029",
+    "title": "K8s Node Pressure (Disk/PID)",
+    "error_code": "NODE_HAS_DISK_PRESSURE",
+    "content": "Critical pods are being evicted. The node 'k8s-worker-03' is reporting 'DiskPressure'. Large temporary log files in /var/log have consumed the entire root volume.",
+    "solution": "Implement a stricter log rotation policy and add an ephemeral-storage resource limit to the pod specifications.",
+    "category": "Kubernetes"
+  },
+  {
+    "id": "SRE_030",
+    "title": "Cache Stampede (Thundering Herd)",
+    "error_code": "CACHE_STAMPEDE_503",
+    "content": "The database is crashing every hour on the hour. When the 'top-products' cache key expires, all 100 application nodes simultaneously query the database to recalculate the same value, causing a connection spike.",
+    "solution": "Implement 'Cache Locking' or 'Probabilistic Early Recomputation' to ensure only one node refreshes the cache at a time.",
+    "category": "Cache"
+  }
+]
