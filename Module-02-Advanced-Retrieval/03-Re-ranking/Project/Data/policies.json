@@ -1,0 +1,50 @@
+[
+    {
+        "id": "POL_001",
+        "title": "Hardware Purchase Policy - Engineering",
+        "department": "Engineering",
+        "year": 2024,
+        "content": "All software engineers are eligible for a standard laptop. Senior Engineers and above can request a Mac Studio or equivalent high-end workstation after 1 year of tenure. Junior and Mid-level engineers are eligible for high-end workstations only after 2 years of tenure or with specific VP approval.",
+        "category": "Equipment"
+    },
+    {
+        "id": "POL_002",
+        "title": "Remote Work & Travel Subsidy",
+        "department": "Human Resources",
+        "year": 2023,
+        "content": "Employees working 100% remotely are eligible for a $500 annual home-office stipend. Travel to headquarters for quarterly syncs is fully reimbursed for employees living more than 50 miles away from the office. For employees within 50 miles, only public transport is covered.",
+        "category": "Benefits"
+    },
+    {
+        "id": "POL_003",
+        "title": "Education and Certification Reimbursement",
+        "department": "Engineering",
+        "year": 2024,
+        "content": "The company supports continuous learning. Engineers can claim up to $2000 per year for AWS, Azure, or GCP certifications. Approval from the direct manager is required before purchase. Courses on Udemy or Coursera are pre-approved if the cost is under $100.",
+        "category": "Education"
+    },
+    {
+        "id": "POL_004",
+        "title": "Vacation and Time-Off Policy",
+        "department": "Human Resources",
+        "year": 2024,
+        "content": "Our 'Unlimited PTO' policy requires a minimum of 15 days taken per year to prevent burnout. Requests for more than 10 consecutive working days require 1-month notice. During peak release seasons (Q4), all leave over 3 days must be approved by the CTO.",
+        "category": "Benefits"
+    },
+    {
+        "id": "POL_005",
+        "title": "Junior Engineer Fast-Track Program",
+        "department": "Engineering",
+        "year": 2024,
+        "content": "Junior engineers in the Fast-Track program are eligible for specialized hardware upgrades, including high-end workstations, after only 6 months of successful performance reviews, bypassing the standard 2-year tenure rule.",
+        "category": "Equipment"
+    },
+    {
+        "id": "POL_006",
+        "title": "Security and Data Privacy",
+        "department": "Legal",
+        "year": 2024,
+        "content": "All employees must complete annual security training. Access to production databases is strictly limited to SRE and Lead Engineers. Password sharing or use of personal VPNs on company hardware is a fireable offense.",
+        "category": "Security"
+    }
+]
