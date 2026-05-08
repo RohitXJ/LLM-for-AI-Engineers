@@ -32,15 +32,44 @@ class Chroma:
         )
         return results
     
-    def data_ingest(self,ids: list, documents: list[str], metadatas: list[dict]) -> None:
+    def data_ingest(self,new_ids: list, corpus: list[dict]) -> None:
         """
         Inserts a batch of documents into the collection with their corresponding metadata.
         """
+        ids = []
+        metadata = []
+        doc = []
+
+        for item in corpus:
+            # Check if the item's ID is in the target list
+            if item.get("id") in new_ids:
+                doc.append(
+                    f"TITLE: {item.get('title', 'N/A')} CONTENT: {item.get('content', '')}"
+                )
+                metadata.append(
+                    {
+                        "department": item.get("department"),
+                        "category": item.get("category"),
+                        "year": item.get("year"),
+                    }
+                )
+                ids.append(item.get("id"))
+        
         self.collection.add(
             ids=ids,
-            documents=documents,
-            metadatas=metadatas
+            documents=doc,
+            metadatas=metadata
         )
         print("Data Ingested Successfully")
+    
+    def id_fetch(self):
+        """
+        Fetches all document IDs currently in the collection.
+        
+        Returns:
+            set: A set of existing document IDs.
+        """
+        results = self.collection.get(include=[])
+        return set(results['ids'])
 
 
