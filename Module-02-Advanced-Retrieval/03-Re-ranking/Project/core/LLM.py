@@ -6,6 +6,50 @@ from pydantic import BaseModel, Field
 
 load_dotenv()
 
+from sentence_transformers import CrossEncoder
+
+class CrossEnc:
+    def __init__(self, model_name: str = "BAAI/bge-reranker-base"):
+        """
+        Initializes the Cross-Encoder model.
+        """
+        print(f"Loading Cross-Encoder model: {model_name}...")
+        self.model = CrossEncoder(model_name)
+
+    def rank(self, query: str, candidates: dict, top_k: int = 2) -> list:
+        """
+        Ranks the candidates based on the query using the Cross-Encoder.
+        
+        Args:
+            query (str): The user query.
+            candidates (dict): A dictionary mapping doc_id to {"document": str, "metadata": dict}.
+            top_k (int): Number of top results to return.
+            
+        Returns:
+            list: A list of documents (strings) that are the top matches.
+        """
+        if not candidates:
+            return []
+
+        # Prepare pairs for the Cross-Encoder: (query, document)
+        doc_ids = list(candidates.keys())
+        documents = [candidates[doc_id]["document"] for doc_id in doc_ids]
+        pairs = [[query, doc] for doc in documents]
+
+        # Get relevance scores
+        scores = self.model.predict(pairs)
+
+        # Pair doc_ids with scores and sort
+        scored_results = list(zip(doc_ids, scores))
+        scored_results.sort(key=lambda x: x[1], reverse=True)
+
+        # Select top_k documents
+        top_results = []
+        for doc_id, score in scored_results[:top_k]:
+            top_results.append(candidates[doc_id]["document"])
+        
+        return top_results
+
 class Ollama:
     def __init__(self, model: str = "gpt-oss:20b-cloud"):
         self.llm = ChatOllama(model=model, temperature=0)

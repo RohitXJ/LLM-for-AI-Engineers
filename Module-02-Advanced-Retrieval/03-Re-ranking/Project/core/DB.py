@@ -21,15 +21,27 @@ class Chroma:
             "department": sorted(list(departments)),
             "category": sorted(list(categories))
         }
-    def query_context(self,query_text, filter_values: dict = {}) -> str:
+    def query_context(self,query_text, filter_values: dict = {}, target_ids: list=[]) -> str:
         """
         Queries the collection with a given query text and filters based on provided metadata.
         """
-        results = self.collection.query(
-            query_texts = query_text,
-            where=filter_values,
-            n_results=50
-        )
+        if filter_values:
+            results = self.collection.query(
+                query_texts = query_text,
+                where=filter_values,
+                n_results=50
+            )
+        elif target_ids:
+            results = self.collection.query(
+                query_texts = query_text,
+                ids=target_ids,
+                n_results=50
+            )
+        else:
+            results = self.collection.query(
+                query_texts = query_text,
+                n_results=50
+            )
         return results
     
     def data_ingest(self,new_ids: list, corpus: list[dict]) -> None:

@@ -46,5 +46,53 @@
         "year": 2024,
         "content": "All employees must complete annual security training. Access to production databases is strictly limited to SRE and Lead Engineers. Password sharing or use of personal VPNs on company hardware is a fireable offense.",
         "category": "Security"
+    },
+    {
+        "id": "POL_007",
+        "title": "Intellectual Property and Invention Assignment",
+        "department": "Legal",
+        "year": 2024,
+        "content": "All inventions, code, and designs created during employment or using company resources belong to the company. Employees must disclose all side projects to the Legal department to ensure no conflict of interest exists.",
+        "category": "Legal"
+    },
+    {
+        "id": "POL_008",
+        "title": "On-Call Compensation and Rotation",
+        "department": "Engineering",
+        "year": 2024,
+        "content": "SREs and Backend Engineers are part of a weekly on-call rotation. Compensation for being on-call is $400 per week, plus time-and-a-half for active incident resolution hours. Engineers must respond to P0 alerts within 15 minutes.",
+        "category": "Compensation"
+    },
+    {
+        "id": "POL_009",
+        "title": "Diversity and Inclusion Guidelines",
+        "department": "Human Resources",
+        "year": 2024,
+        "content": "The company is committed to a diverse workforce. Hiring panels must include at least one person from an underrepresented group. Quarterly sensitivity training is mandatory for all people managers.",
+        "category": "Culture"
+    },
+    {
+        "id": "POL_010",
+        "title": "Public Speaking and Open Source Contribution",
+        "department": "Marketing",
+        "year": 2024,
+        "content": "Employees representing the company at conferences are eligible for travel sponsorship. Open-sourcing company internal tools requires approval from both Engineering Leads and the Legal team.",
+        "category": "Community"
+    },
+    {
+        "id": "POL_011",
+        "title": "AI Usage and LLM Safety Policy",
+        "department": "Engineering",
+        "year": 2024,
+        "content": "Use of LLMs for coding is permitted but all generated code must be peer-reviewed. Sensitive company data, including customer PII or internal architecture diagrams, must NEVER be uploaded to public LLM providers.",
+        "category": "Security"
+    },
+    {
+        "id": "POL_012",
+        "title": "Health and Wellness Benefits",
+        "department": "Human Resources",
+        "year": 2024,
+        "content": "The company provides premium health insurance including dental and vision. Employees are eligible for a $100 monthly reimbursement for gym memberships or mental health apps like Headspace or Calm.",
+        "category": "Benefits"
     }
 ]
