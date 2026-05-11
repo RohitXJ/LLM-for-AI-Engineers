@@ -26,7 +26,9 @@ This repository is designed to prove **Accuracy, Logic, and Reliability**. Every
   - *Focus:* Self-querying retrieval, global metadata anchors, and defense-in-depth Pydantic validation.
 - **[🛠️ SRE-Pulse: Hybrid Search Engine](./Module-02-Advanced-Retrieval/02-Hybrid-Search/Project/)**
   - *Focus:* Dual-mode retrieval (BM25 + Vector) fused via **Reciprocal Rank Fusion (RRF)**. High-performance persistence (Pickle) and idempotent data sync.
-- **Re-ranking** and **Query Transformation** (Upcoming).
+- **[🛡️ Sentinel Search: Multi-Stage Re-ranking](./Module-02-Advanced-Retrieval/03-Re-ranking/Project/)**
+  - *Focus:* 3-stage retrieval pipeline (Metadata -> Hybrid -> Cross-Encoder). Features switchable Local/Cloud rerankers and real-time pipeline observability.
+- **Query Transformation** (Upcoming).
 
 #### 📂 [Module 03: Structured Logic & Extraction](./Module-03-Structured-Logic-Extraction/)
 *Guaranteeing valid outputs and tool integration.*

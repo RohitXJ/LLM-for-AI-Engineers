@@ -1,12 +1,13 @@
+import os
 from typing import Optional, List, Union
 from dotenv import load_dotenv
+import cohere
+from sentence_transformers import CrossEncoder
 from langchain_ollama import ChatOllama
 from langchain_core.prompts import ChatPromptTemplate
 from pydantic import BaseModel, Field
 
 load_dotenv()
-
-from sentence_transformers import CrossEncoder
 
 class CrossEnc:
     def __init__(self, model_name: str = "BAAI/bge-reranker-base"):
@@ -19,35 +20,59 @@ class CrossEnc:
     def rank(self, query: str, candidates: dict, top_k: int = 2) -> list:
         """
         Ranks the candidates based on the query using the Cross-Encoder.
-        
-        Args:
-            query (str): The user query.
-            candidates (dict): A dictionary mapping doc_id to {"document": str, "metadata": dict}.
-            top_k (int): Number of top results to return.
-            
-        Returns:
-            list: A list of documents (strings) that are the top matches.
         """
         if not candidates:
             return []
 
-        # Prepare pairs for the Cross-Encoder: (query, document)
         doc_ids = list(candidates.keys())
         documents = [candidates[doc_id]["document"] for doc_id in doc_ids]
         pairs = [[query, doc] for doc in documents]
 
-        # Get relevance scores
         scores = self.model.predict(pairs)
 
-        # Pair doc_ids with scores and sort
         scored_results = list(zip(doc_ids, scores))
         scored_results.sort(key=lambda x: x[1], reverse=True)
 
-        # Select top_k documents
         top_results = []
         for doc_id, score in scored_results[:top_k]:
             top_results.append(candidates[doc_id]["document"])
         
+        return top_results
+
+class CohereReranker:
+    def __init__(self, api_key: Optional[str] = None, model: str = "rerank-english-v3.0"):
+        """
+        Initializes the Cohere Reranker.
+        """
+        self.api_key = api_key or os.getenv("COHERE_API_KEY")
+        self.model = model
+        self.client = cohere.ClientV2(api_key=self.api_key) if self.api_key else None
+
+    def rank(self, query: str, candidates: dict, top_k: int = 2) -> list:
+        """
+        Ranks the candidates based on the query using Cohere's Rerank API.
+        """
+        if not self.client:
+            raise ValueError("Cohere API key not found. Please add COHERE_API_KEY to your .env file.")
+        
+        if not candidates:
+            return []
+
+        doc_ids = list(candidates.keys())
+        documents = [candidates[doc_id]["document"] for doc_id in doc_ids]
+        
+        response = self.client.rerank(
+            model=self.model,
+            query=query,
+            documents=documents,
+            top_n=top_k
+        )
+        
+        # Cohere V2 returns a list of results with index and relevance_score
+        top_results = []
+        for result in response.results:
+            top_results.append(documents[result.index])
+            
         return top_results
 
 class Ollama:
