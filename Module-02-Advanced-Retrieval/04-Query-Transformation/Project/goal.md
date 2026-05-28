@@ -38,15 +38,3 @@ Build a production-grade RAG pipeline that transforms "messy" human queries into
 *   **Answer Relevance:** Does the answer actually address the user's intent?
 *   **Context Recall:** Did we find *all* the relevant information (tested via Decomposition)?
 
-## 📂 Project Structure
-```text
-Project/
-├── main.py              # CLI Entry Point
-├── core/
-│   ├── transformer.py   # Refining, Decomposition, Multi-Query
-│   ├── retriever.py     # Hybrid Search & Metadata logic
-│   ├── reranker.py      # Cross-Encoder scoring
-│   └── database.py      # ChromaDB initialization & management
-├── data/                # Sample knowledge base (JSON/Text)
-└── goal.md              # This file
-```

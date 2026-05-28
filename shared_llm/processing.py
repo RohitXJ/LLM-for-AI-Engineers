@@ -46,35 +46,105 @@ class DataLoader:
     Utilities for reading and aggregating data from various file formats.
     """
     @staticmethod
-    def read_file(file_path: str) -> Dict[str, Any]:
+    def _get_file_metadata(path: Path) -> Dict[str, Any]:
+        """Helper to extract standard file metadata."""
+        file_stat = path.stat()
+        mod_date = datetime.datetime.fromtimestamp(file_stat.st_mtime).strftime('%Y-%m-%d %H:%M:%S')
+        return {
+            "source": path.name,
+            "extension": path.suffix.lower(),
+            "last_modified": mod_date,
+            "id": f"doc_{uuid.uuid4().hex[:8]}"
+        }
+
+    @staticmethod
+    def read_file(file_path: str, call_in_lib: bool = False, path_obj: Path = None) -> Dict[str, Any]:
         """
         Reads a single text or markdown file and returns its content and basic metadata.
         
         Args:
             file_path (str): Path to the file.
+            call_in_lib (bool): If True, uses the provided path_obj.
+            path_obj (Path): Pre-constructed Path object.
             
         Returns:
-            Dict[str, Any]: Contains 'content' and 'metadata' (source, extension, last_modified).
+            Dict[str, Any]: Contains 'content' and 'metadata' (source, extension, last_modified, id).
         """
-        path = Path(file_path)
+        path = path_obj if (call_in_lib and path_obj) else Path(file_path)
         if not path.exists():
-            raise FileNotFoundError(f"File not found: {file_path}")
+            raise FileNotFoundError(f"File not found: {path}")
             
         ext = path.suffix.lower()
         if ext not in [".txt", ".md"]:
             raise ValueError(f"Unsupported file extension: {ext}")
             
-        file_stat = path.stat()
-        mod_date = datetime.datetime.fromtimestamp(file_stat.st_mtime).strftime('%Y-%m-%d %H:%M:%S')
+        metadata = DataLoader._get_file_metadata(path)
         
-        metadata = {
-            "source": path.name,
-            "extension": ext,
-            "last_modified": mod_date
-        }
-        
-        with open(file_path, "r", encoding="utf-8") as f:
+        with open(path, "r", encoding="utf-8") as f:
             return {"content": f.read(), "metadata": metadata}
+
+    @staticmethod
+    def read_json(file_path: str, call_in_lib: bool = False, path_obj: Path = None) -> List[Dict[str, Any]]:
+        """
+        Reads a JSON file and returns its content in standardized document format.
+        
+        Args:
+            file_path (str): Path to the file.
+            call_in_lib (bool): If True, uses the provided path_obj.
+            path_obj (Path): Pre-constructed Path object.
+            
+        Returns:
+            List[Dict[str, Any]]: List of documents with 'content' and 'metadata'.
+        """
+        path = path_obj if (call_in_lib and path_obj) else Path(file_path)
+        if not path.exists():
+            raise FileNotFoundError(f"File not found: {path}")
+            
+        file_metadata = DataLoader._get_file_metadata(path)
+        documents = []
+
+        with open(path, 'r', encoding='utf-8') as f:
+            try:
+                data = json.load(f)
+                items = data if isinstance(data, list) else [data]
+                
+                for i, item in enumerate(items):
+                    if not isinstance(item, dict):
+                        item = {"content": str(item)}
+                    
+                    # Ensure content key exists
+                    if "content" not in item:
+                        # Fallback: find any string field if content is missing, or use whole dict as string
+                        potential_content = item.get("text") or item.get("body") or item.get("page_content")
+                        item["content"] = potential_content if potential_content else str(item)
+                    
+                    # Merge metadata
+                    existing_metadata = item.get("metadata", {})
+                    if not isinstance(existing_metadata, dict):
+                        existing_metadata = {"original_metadata": existing_metadata}
+                    
+                    # Combine file metadata with item metadata
+                    merged_metadata = {**existing_metadata, **file_metadata}
+                    
+                    # Ensure unique ID for multiple items in one file
+                    if len(items) > 1:
+                        merged_metadata["id"] = f"{file_metadata['id']}_{i}"
+                    
+                    documents.append({
+                        "content": item["content"],
+                        "metadata": merged_metadata
+                    })
+                    
+            except json.JSONDecodeError:
+                print(f"Warning: {path.name} is not a valid JSON. Skipping.")
+        
+        return documents
+
+    _HANDLERS = {
+        ".txt": "read_file",
+        ".md": "read_file",
+        ".json": "read_json"
+    }
 
     @staticmethod
     def load_json_directory(directory_path: str) -> List[Dict[str, Any]]:
@@ -94,14 +164,51 @@ class DataLoader:
             return []
 
         for file_path in data_path.glob("*.json"):
-            with open(file_path, 'r', encoding='utf-8') as f:
-                try:
-                    data = json.load(f)
-                    if isinstance(data, list):
-                        all_documents.extend(data)
-                    elif isinstance(data, dict):
-                        all_documents.append(data)
-                except json.JSONDecodeError:
-                    print(f"Warning: {file_path.name} is not a valid JSON. Skipping.")
+            all_documents.extend(DataLoader.read_json(str(file_path), call_in_lib=True, path_obj=file_path))
         
         return all_documents
+    
+    @classmethod
+    def master_loader(cls, directory_path: str, allowed_files: List[str] = None) -> List[Dict[str, Any]]:
+        """
+        Extracts all data from all types of files in a directory.
+        
+        Args:
+            directory_path (str): Path to the directory.
+            allowed_files (List[str]): List of suffixes (e.g. ['.txt', '.md']).
+            
+        Returns:
+            List[Dict[str, Any]]: Aggregated list of all extracted documents.
+        """
+        path = Path(directory_path)
+        if not path.exists():
+            raise FileNotFoundError(f"Directory not found: {directory_path}")
+            
+        all_documents = []
+        
+        # If allowed_files is not provided, use all supported extensions
+        if allowed_files is None:
+            allowed_files = list(cls._HANDLERS.keys())
+        else:
+            # Standardize suffixes to start with dot
+            allowed_files = [ext if ext.startswith('.') else f'.{ext}' for ext in allowed_files]
+
+        for file_path in path.iterdir():
+            if file_path.is_file():
+                ext = file_path.suffix.lower()
+                if ext in allowed_files and ext in cls._HANDLERS:
+                    method_name = cls._HANDLERS[ext]
+                    handler = getattr(cls, method_name)
+                    try:
+                        # Using call_in_lib and path_obj as requested
+                        result = handler(str(file_path), call_in_lib=True, path_obj=file_path)
+                        
+                        if isinstance(result, list):
+                            all_documents.extend(result)
+                        else:
+                            all_documents.append(result)
+                    except Exception as e:
+                        print(f"Error processing {file_path}: {e}")
+                        
+        return all_documents
+        

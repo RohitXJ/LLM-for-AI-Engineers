@@ -1,4 +1,5 @@
 import chromadb
+import uuid
 from typing import List, Optional, Dict, Any, Set
 
 class ChromaManager:
@@ -40,15 +41,18 @@ class ChromaManager:
         results = self.collection.get(include=[])
         return set(results['ids'])
 
-    def ingest(self, ids: List[str], documents: List[str], metadatas: List[Dict[str, Any]]) -> None:
+    def ingest(self, documents: List[str], metadatas: List[Dict[str, Any]], ids: Optional[List[str]] = None) -> None:
         """
         Adds a batch of documents and metadata to the collection.
         
         Args:
-            ids (List[str]): Unique IDs for each chunk.
             documents (List[str]): The text content of each chunk.
             metadatas (List[Dict[str, Any]]): Metadata dictionaries for each chunk.
+            ids (Optional[List[str]]): Unique IDs for each chunk. Generated if missing.
         """
+        if ids is None:
+            ids = [f"chk_{uuid.uuid4().hex[:10]}" for _ in documents]
+            
         try:
             self.collection.add(
                 ids=ids,
@@ -57,6 +61,39 @@ class ChromaManager:
             )
         except Exception as e:
             raise RuntimeError(f"ChromaDB Ingest Failed: {e}")
+
+    def add_documents(self, documents: List[Dict[str, Any]], chunker: Optional[Any] = None) -> None:
+        """
+        High-level method to process and add documents to the collection.
+        If a chunker is provided, it handles splitting and mapping metadata.
+        
+        Args:
+            documents (List[Dict[str, Any]]): List of documents (output of DataLoader).
+            chunker (Optional[Chunker]): Optional Chunker instance for text splitting.
+        """
+        all_ids = []
+        all_texts = []
+        all_metadatas = []
+
+        for doc in documents:
+            content = doc["content"]
+            metadata = doc["metadata"]
+            
+            if chunker:
+                chunks, ids = chunker.split(content)
+                for c_id, chunk in zip(ids, chunks):
+                    all_ids.append(c_id)
+                    all_texts.append(chunk)
+                    # Merge doc metadata into chunk metadata
+                    all_metadatas.append(metadata.copy())
+            else:
+                doc_id = metadata.get("id") or f"doc_{uuid.uuid4().hex[:10]}"
+                all_ids.append(doc_id)
+                all_texts.append(content)
+                all_metadatas.append(metadata)
+        
+        if all_texts:
+            self.ingest(documents=all_texts, metadatas=all_metadatas, ids=all_ids)
 
     def query(self, query_text: str, n_results: int = 5, where: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """

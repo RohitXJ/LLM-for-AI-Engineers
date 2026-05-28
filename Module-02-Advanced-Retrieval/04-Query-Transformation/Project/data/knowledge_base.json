@@ -1,0 +1,50 @@
+[
+    {
+        "id": "doc_001",
+        "title": "Quantum Computing Basics",
+        "content": "Quantum computing uses qubits to perform calculations. Unlike classical bits, qubits can exist in superposition.",
+        "metadata": {
+            "topic": "Quantum Computing",
+            "year": 2024,
+            "complexity": "Beginner",
+            "audience": "Students",
+            "priority": "Medium"
+        }
+    },
+    {
+        "id": "doc_002",
+        "title": "Superposition and Entanglement",
+        "content": "Superposition allows qubits to be in multiple states simultaneously. Entanglement links qubits so the state of one affects the other.",
+        "metadata": {
+            "topic": "Quantum Computing",
+            "year": 2024,
+            "complexity": "Intermediate",
+            "audience": "Physics Students",
+            "priority": "High"
+        }
+    },
+    {
+        "id": "doc_003",
+        "title": "LLM Architecture",
+        "content": "Large Language Models (LLMs) use the Transformer architecture. Key components include self-attention mechanisms and multi-head attention.",
+        "metadata": {
+            "topic": "AI",
+            "year": 2023,
+            "complexity": "Advanced",
+            "audience": "AI Engineers",
+            "priority": "High"
+        }
+    },
+    {
+        "id": "doc_004",
+        "title": "RAG Techniques",
+        "content": "Retrieval-Augmented Generation (RAG) enhances LLMs by retrieving relevant documents from an external knowledge base before generating a response.",
+        "metadata": {
+            "topic": "AI",
+            "year": 2024,
+            "complexity": "Intermediate",
+            "audience": "Developers",
+            "priority": "Medium"
+        }
+    }
+]
