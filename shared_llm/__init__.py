@@ -1,3 +1,9 @@
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file if present
+load_dotenv()
+
 from .schema import DocumentMetadata, SearchFilters
 from .processing import Chunker, DataLoader
 from .database import ChromaManager

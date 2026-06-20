@@ -23,11 +23,23 @@ class KeywordEngine:
         Creates a BM25 index from a list of document dictionaries.
         
         Args:
-            documents (List[Dict[str, Any]]): List of dicts containing 'id', 'title', and 'content'.
+            documents (List[Dict[str, Any]]): List of dicts containing 'content' and 'metadata'.
             save_path (Optional[str]): If provided, serializes the index to this path.
         """
-        self.doc_ids = [doc.get('id', str(i)) for i, doc in enumerate(documents)]
-        corpus_texts = [f"{doc.get('title', '')} {doc.get('content', '')}" for doc in documents]
+        self.doc_ids = []
+        corpus_texts = []
+        
+        for i, doc in enumerate(documents):
+            # Extract ID from metadata or fallback to index
+            metadata = doc.get('metadata', {})
+            doc_id = metadata.get('id') or str(i)
+            self.doc_ids.append(doc_id)
+            
+            # Extract searchable text (Title/Source + Content)
+            title = metadata.get('title') or metadata.get('source') or ""
+            content = doc.get('content', '')
+            corpus_texts.append(f"{title} {content}")
+            
         tokenized_corpus = [self._tokenize(text) for text in corpus_texts]
         self.bm25 = BM25Okapi(tokenized_corpus)
         

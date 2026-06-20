@@ -48,6 +48,74 @@ class ChatManager:
         response = self.chat_chain.invoke({"context": context, "question": query})
         return response.content
 
+    def refine_query(self, query: str, history: List[Dict[str, str]] = None) -> str:
+        """
+        Converts conversational follow-ups into standalone search queries (Anaphora Resolution).
+        
+        Args:
+            query (str): The user's follow-up query.
+            history (List[Dict[str, str]]): List of previous messages with 'role' and 'content'.
+            
+        Returns:
+            str: The refined, standalone query.
+        """
+        if not history:
+            return query
+            
+        history_str = "\n".join([f"{m['role'].upper()}: {m['content']}" for m in history])
+        prompt = (
+            "Given the following conversation history and a follow-up query, "
+            "re-write the follow-up query to be a standalone search query. "
+            "Do not answer it, just re-write it to be complete and clear. "
+            "Output ONLY the re-written query.\n\n"
+            f"HISTORY:\n{history_str}\n\n"
+            f"FOLLOW-UP QUERY: {query}"
+        )
+        response = self.llm.invoke(prompt)
+        return response.content.strip()
+
+    def decompose_query(self, query: str) -> List[str]:
+        """
+        Splits a complex query into atomic sub-questions.
+        
+        Args:
+            query (str): The user's complex query.
+            
+        Returns:
+            List[str]: List of maximum 3 sub-questions.
+        """
+        prompt = (
+            "Split the following complex query into a maximum of 3 atomic sub-questions "
+            "that can be searched independently. "
+            "Output as a simple bulleted list. If the query is simple, return it as a single bullet.\n\n"
+            f"QUERY: {query}"
+        )
+        response = self.llm.invoke(prompt)
+        lines = response.content.strip().split('\n')
+        sub_questions = [line.strip().lstrip('*-•').strip() for line in lines if line.strip()]
+        return sub_questions[:3]
+
+    def expand_query(self, query: str) -> List[str]:
+        """
+        Generates 3 variations of the query to improve search recall.
+        
+        Args:
+            query (str): The user's search query.
+            
+        Returns:
+            List[str]: List of 3 query variations.
+        """
+        prompt = (
+            "Generate 3 variations of the following query to improve search recall. "
+            "Focus on synonyms and different technical phrasings. "
+            "Output as a simple bulleted list.\n\n"
+            f"QUERY: {query}"
+        )
+        response = self.llm.invoke(prompt)
+        lines = response.content.strip().split('\n')
+        variations = [line.strip().lstrip('*-•').strip() for line in lines if line.strip()]
+        return variations[:3]
+
     def extract_metadata(self, text: str, global_anchor: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """
         Analyzes text to extract structured metadata (Topic, Year, etc.).

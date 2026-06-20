@@ -95,6 +95,20 @@ class ChromaManager:
         if all_texts:
             self.ingest(documents=all_texts, metadatas=all_metadatas, ids=all_ids)
 
+    def get_by_ids(self, ids: List[str]) -> List[Dict[str, Any]]:
+        """
+        Retrieves full document data (content and metadata) for a list of IDs.
+        
+        Args:
+            ids (List[str]): List of document IDs to fetch.
+            
+        Returns:
+            List[Dict[str, Any]]: List of results from ChromaDB.
+        """
+        if not ids:
+            return []
+        return self.collection.get(ids=ids)
+
     def query(self, query_text: str, n_results: int = 5, where: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """
         Performs a semantic search in the collection, optionally filtered by metadata.
