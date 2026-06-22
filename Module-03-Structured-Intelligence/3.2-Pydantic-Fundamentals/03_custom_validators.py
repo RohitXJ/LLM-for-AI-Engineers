@@ -1,8 +1,3 @@
-"""
-Lesson 3.2.3: Custom Validators
-Goal: Implement advanced validation rules using field_validator and model_validator on a Resume schema.
-"""
-
 from datetime import date
 from typing import List, Optional
 from pydantic import BaseModel, Field, ValidationError, field_validator, model_validator
