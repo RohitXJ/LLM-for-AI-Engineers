@@ -1,7 +1,7 @@
 # Local LLM & Free APIs
 ollama
 langchain-ollama
-google-generativeai
+google-genai
 langchain-google-genai
 langchain-groq
 
