@@ -1,0 +1,30 @@
+TAX INVOICE
+
+Invoice ID: TX-9032
+Date: 05 May 2026
+
+Seller
+CloudStack Technologies
+
+Buyer
+NextGen Analytics
+
+Products
+
+Cloud Hosting
+Quantity: 2
+Price: $250
+
+AI API Subscription
+Quantity: 1
+Price: $500
+
+Support Package
+Quantity: 3
+Price: $75
+
+Subtotal: $1225
+GST: $220.50
+Grand Total: $1445.50
+
+Payment Status: Pending

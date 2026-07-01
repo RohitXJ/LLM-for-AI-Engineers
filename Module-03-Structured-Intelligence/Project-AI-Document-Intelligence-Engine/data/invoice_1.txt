@@ -1,0 +1,30 @@
+INVOICE
+
+Invoice Number: INV-2026-1045
+Invoice Date: 12 June 2026
+
+Vendor
+ABC Software Pvt Ltd
+Mumbai, India
+
+Customer
+Hexa Global Placement
+
+Items
+
+1. AI Consultation
+Quantity: 5
+Unit Price: $100
+Amount: $500
+
+2. Backend Development
+Quantity: 20
+Unit Price: $60
+Amount: $1200
+
+Subtotal: $1700
+Tax (18%): $306
+Total: $2006
+
+Payment Due: 30 June 2026
+Payment Method: Bank Transfer

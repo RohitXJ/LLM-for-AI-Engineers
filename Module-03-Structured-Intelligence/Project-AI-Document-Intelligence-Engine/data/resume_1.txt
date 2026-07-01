@@ -1,0 +1,34 @@
+Rahul Sharma
+
+Email: rahul.sharma@gmail.com
+Phone: +91 9876543210
+Location: Bengaluru, Karnataka
+
+Professional Summary
+AI Engineer with 3 years of experience developing machine learning models, REST APIs, and LLM-powered applications.
+
+Education
+Bachelor of Technology in Computer Science
+IIT Delhi
+Graduated: 2022
+
+Work Experience
+Company: DeepVision AI
+Role: AI Engineer
+Duration: July 2022 - Present
+
+Projects
+- Built an AI chatbot using LangGraph and Ollama.
+- Developed a document search system using RAG.
+
+Skills
+Python
+PyTorch
+FastAPI
+Docker
+PostgreSQL
+LangGraph
+Git
+
+Certifications
+AWS Cloud Practitioner

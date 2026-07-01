@@ -1,0 +1,14 @@
+Subject: Unable to Access My Dashboard
+
+Hello Support Team,
+
+I'm Rohit Gomes.
+
+Since yesterday I haven't been able to log into my dashboard. Every time I sign in, I receive a "500 Internal Server Error."
+
+My registered email is rohit.gomes@gmail.com.
+
+This issue is blocking my work, so I would appreciate a quick resolution.
+
+Thanks,
+Rohit

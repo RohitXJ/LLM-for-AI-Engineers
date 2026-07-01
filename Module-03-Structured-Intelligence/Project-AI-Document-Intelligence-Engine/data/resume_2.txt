@@ -1,0 +1,34 @@
+Ananya Gupta
+
+Email: ananya.gupta@outlook.com
+Phone: +91 9123456780
+Location: Hyderabad, Telangana
+
+Professional Summary
+Machine Learning Engineer with experience in computer vision and NLP applications.
+
+Education
+Bachelor of Engineering in Information Technology
+VIT Vellore
+Graduated: 2021
+
+Work Experience
+Company: VisionTech Solutions
+Role: Machine Learning Engineer
+Duration: August 2021 - Present
+
+Projects
+- Face recognition attendance system.
+- OCR pipeline for invoice processing.
+- Image classification using PyTorch.
+
+Skills
+Python
+TensorFlow
+OpenCV
+Docker
+Kubernetes
+SQL
+
+Certifications
+Google Professional ML Engineer
