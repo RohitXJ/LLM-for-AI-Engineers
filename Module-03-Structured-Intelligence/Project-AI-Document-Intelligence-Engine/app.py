@@ -1,8 +1,9 @@
 from core import Manager, getData
 import json, os
 from pydantic import ValidationError
+import asyncio
 
-def main():
+async def main():
     # Initialize the OpenAI client
     manager = Manager(model="qwen3-nothink:latest")
     while True:
@@ -20,7 +21,8 @@ def main():
     
     try:
         print("Trying to Extract Data...")
-        result = manager.chat(work_type, raw_text)
+        # Adjusted for the new async manager.chat
+        result = asyncio.run(manager.chat(work_type, raw_text))
         print("Successfully extracted data.")
     except ValidationError as ve:
         print("Error: Extraction failed because the LLM returned data in an incorrect format.")
@@ -35,4 +37,4 @@ def main():
         json.dump(result.model_dump(), file, indent=4)
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
