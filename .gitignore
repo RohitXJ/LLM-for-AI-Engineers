@@ -195,3 +195,4 @@ Module-02-Advanced-Retrieval/02-Hybrid-Search/Project/SYS_OBJ/BM25/bm25_obj_corp
 .aider*
 prompt.txt
 /Module-03-Structured-Intelligence/Project-AI-Document-Intelligence-Engine/out
+*.db
