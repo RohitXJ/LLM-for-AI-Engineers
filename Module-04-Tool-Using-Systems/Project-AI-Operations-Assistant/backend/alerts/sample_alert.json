@@ -1,0 +1,8 @@
+[
+  {
+    "service": "auth-service",
+    "severity": "critical",
+    "message": "Service auth-service is unreachable (503 Service Unavailable)",
+    "timestamp": "2026-09-09T10:00:00Z"
+  }
+]
