@@ -16,7 +16,7 @@ class SystemAlert(BaseModel):
     that help engineers (and AI) pinpoint the exact failure point.
     """
     alert_id: str = Field(..., description="Unique identifier for the alert (e.g. UUID)")
-    timestamp: datetime = Field(default_factory=datetime.utcnow)
+    timestamp: datetime = Field(default_factory=datetime.astimezone)
     service_name: str = Field(..., description="The microservice that triggered the alert")
     severity: Severity = Field(..., description="The impact level of the alert")
     error_code: str = Field(..., description="Standardized error code (e.g., SVC_503_TIMEOUT)")

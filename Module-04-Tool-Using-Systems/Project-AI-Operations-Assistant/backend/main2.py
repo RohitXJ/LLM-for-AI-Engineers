@@ -16,7 +16,7 @@ from core import Manager
 
 def main():
     manager = Manager(main_logger)
-
+    manager.engineStartup()
 
 if __name__ == "__main__":
     main()
