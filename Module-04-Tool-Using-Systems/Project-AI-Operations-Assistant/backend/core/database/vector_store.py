@@ -48,7 +48,7 @@ class vectorDB():
         return list(unique_files)
 
     def ingestNewFiles(self, new_files: list[str]):
-        """Read text from new files, split them if necessary, and add them to the collection."""
+        """Read text from new files, split by markdown headers, and add to the collection."""
 
         for filename in new_files:
             file_path = self.targetDir / filename
@@ -57,19 +57,31 @@ class vectorDB():
                 with open(file_path, "r", encoding="utf-8") as f:
                     content = f.read()
                 
-                # Skip empty files
                 if not content.strip():
                     continue
+
+                # --- Markdown Header Chunking ---
+                # We split by major headers (# , ## ) to keep sections together
+                import re
+                chunks = re.split(r'(?=\n#{1,3} )', "\n" + content)
+                chunks = [c.strip() for c in chunks if c.strip()]
                 
-                # Placeholder for document chunker
-                doc_id = f"{filename}_0"
+                documents = []
+                metadatas = []
+                ids = []
+
+                for i, chunk in enumerate(chunks):
+                    doc_id = f"{filename}_{i}"
+                    documents.append(chunk)
+                    metadatas.append({"filename": filename, "chunk_index": i})
+                    ids.append(doc_id)
                 
                 self.collection.add(
-                    documents=[content],
-                    metadatas=[{"filename": filename}],
-                    ids=[doc_id]
+                    documents=documents,
+                    metadatas=metadatas,
+                    ids=ids
                 )
-                self.logger.info(f"Ingested {filename} to {self.collection.name}")
+                self.logger.info(f"Ingested {len(chunks)} chunks from {filename}")
                 
             except Exception as e:
                 self.logger.error(f"Error ingesting file {filename}: {e}")

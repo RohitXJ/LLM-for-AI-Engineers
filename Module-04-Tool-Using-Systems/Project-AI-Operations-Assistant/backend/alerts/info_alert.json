@@ -1,0 +1,10 @@
+[
+  {
+    "alert_id": "ALRT-003",
+    "service_name": "config-service",
+    "severity": "INFO",
+    "error_code": "CONFIG_USING_DEFAULTS",
+    "message": "Config file not found, loading default settings.",
+    "timestamp": "2026-09-21T10:00:00Z"
+  }
+]

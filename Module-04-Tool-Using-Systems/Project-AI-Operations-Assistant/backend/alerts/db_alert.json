@@ -1,0 +1,10 @@
+[
+  {
+    "alert_id": "ALRT-002",
+    "service_name": "database-service",
+    "severity": "CRITICAL",
+    "error_code": "DB_CONNECTION_FAILED",
+    "message": "Database connection refused by host",
+    "timestamp": "2026-09-18T12:00:00Z"
+  }
+]
