@@ -9,6 +9,7 @@ from ollama import Client
 from core.models.alert import SystemAlert
 from core.models.state import AlertState
 from core.models.audit import AuditEntry, ActorType, ActionType
+from core.models.target import TargetServer
 from core.tools.registry import ToolRegistry, RiskLevel
 from core.tools.knowledge import search_runbooks
 from core.tools.system import (
@@ -17,6 +18,11 @@ from core.tools.system import (
     check_service_port, 
     restart_container
 )
+
+from core.ingestion.hub import IngestionHub
+from core.ingestion.plugins.daemon import DaemonAdapter
+from core.ingestion.plugins.prometheus import PrometheusAdapter
+from core.ingestion.plugins.generic import GenericAdapter
 
 class Manager:
     def __init__(self, logger: logging.Logger, 
@@ -49,6 +55,21 @@ class Manager:
         self.registry.register_tool(get_container_logs, risk_level=RiskLevel.SAFE)
         self.registry.register_tool(check_service_port, risk_level=RiskLevel.SAFE)
         self.registry.register_tool(restart_container, risk_level=RiskLevel.REMEDIATION)
+
+        # Initialize Ingestion Hub & Plugins
+        self.hub = IngestionHub()
+        self.hub.register_adapter(DaemonAdapter())
+        self.hub.register_adapter(PrometheusAdapter())
+        self.hub.register_adapter(GenericAdapter())
+
+        # Current Single-Server Target Configuration
+        # In Phase 5, this will be loaded from a config file/DB
+        self.target = TargetServer(
+            id="primary-node",
+            name="Main Production Server",
+            url="http://localhost:8000",
+            api_token="super-secret-daemon-token"
+        )
 
     def engineStartup(self):
         """Initializes the VDB and ingests new runbooks."""
